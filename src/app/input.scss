@@ -9,6 +9,8 @@ body {
   --radius-xl: calc(24px * var(--radius-modifier));
   --checkbox-radius: 4px;
 
+  --background-modifier-form-field: var(--interactive-normal);
+
   /* 0 when <1, 1 when >=1 */
   --radius-modifier-check: clamp(0, (var(--radius-modifier) - 1) * 10000 + 1, 1);
 
@@ -94,6 +96,7 @@ body.input-cupertino {
     --input-shadow: none;
 
     --interactive-normal: var(--color-base-25);
+    --background-modifier-form-field: var(--color-base-00);
   }
   &.theme-dark {
     --shadow-base: inset 1px 1.5px 1px -1px rgba(255, 255, 255, 0.2), inset -1px -1.5px 1px -1px rgba(255, 255, 255, 0.15), inset 0 4px 16px rgba(255, 255, 255, 0.025);
@@ -312,7 +315,7 @@ body.input-material {
   --slider-track-height: 16px;
   --interactive-hover: var(--color-base-25);
   --interactive-normal: var(--color-base-30);
-  --background-modifier-form-field: var(--interactive-normal);
+  --background-modifier-form-field: var(--color-base-00);
 
   // Text input
   textarea,

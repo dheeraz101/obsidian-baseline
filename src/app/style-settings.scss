@@ -587,6 +587,31 @@ settings:
 		markdown: true
 		description: Base font for all of Obsidian can be set in **Appearance** settings
 	-
+		id: density-modifier
+		title: Density
+		type: variable-number-slider
+		default: 1
+		min: 0.75
+		max: 1.25
+		step: 0.25
+	-
+		id: radius-modifier
+		title: Roundness
+		type: variable-number-slider
+		default: 1
+		min: 0.5
+		max: 2
+		step: 0.25
+	-
+		id: icon-stroke-modifier
+		title: Icon thickness
+		type: variable-number-slider
+		default: 1
+		options:
+		min: 0.5
+		max: 1
+		step: 0.25
+	-
 		id: layout-style
 		title: Layout style
 		type: class-select
@@ -636,31 +661,6 @@ settings:
 			-
 				label: Material
 				value: input-material
-	-
-		id: density-modifier
-		title: Density
-		type: variable-number-slider
-		default: 1
-		min: 0.75
-		max: 1.25
-		step: 0.25
-	-
-		id: radius-modifier
-		title: Roundness
-		type: variable-number-slider
-		default: 1
-		min: 0.5
-		max: 2
-		step: 0.25
-	-
-		id: icon-stroke-modifier
-		title: Icon thickness
-		type: variable-number-slider
-		default: 1
-		options:
-		min: 0.5
-		max: 1
-		step: 0.25
 	-
 		id: prompt-style
 		title: Command palette style
@@ -2037,7 +2037,7 @@ settings:
 		type: class-toggle
 		default: false
 	-
-		id: metadata-label-width-multiplier
+		id: metadata-label-width-modifier
 		title: Property name width
 		description: Width for the name of the property
 		type: variable-number-slider

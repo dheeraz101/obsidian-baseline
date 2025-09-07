@@ -283,7 +283,7 @@
   "metadata-heading-off": "Hide properties heading",
   "metadata-add-property-off": "Hide \"Add property\" button",
   "metadata-icons-off": "Hide property icons",
-  "metadata-label-width": "Property name width",
+  "metadata-label-width-modifier": "Property name width",
   "table-text-size": "Table font size",
   "row-lines": "Row lines",
   "col-lines": "Column lines",
