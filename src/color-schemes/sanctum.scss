@@ -46,7 +46,7 @@ https://github.com/jdanielmourao/obsidian-sanctum/
 }
 .theme-light.sanctum-light {
   --background-primary: rgb(var(--white));
-  --background-primary-alt: rgb(var(--grey-10));
+  --background-primary-alt: rgba(var(--gray-20), 0.5);
   --background-secondary: rgb(var(--gray-10));
   --background-secondary-alt: rgb(var(--gray-20));
   --background-modifier-hover: rgba(var(--gray-50), 0.12);
