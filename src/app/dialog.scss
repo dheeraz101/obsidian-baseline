@@ -1,13 +1,6 @@
 body {
   --modal-background: var(--background-secondary);
   --modal-border-color: var(--background-modifier-border-hover);
-
-  --prompt-border-color: var(--background-modifier-border-hover);
-  --prompt-input-height: 64px;
-}
-
-body.is-phone {
-  --prompt-input-height: 64px;
 }
 
 body:not(.is-phone) .modal-bg {
@@ -18,8 +11,7 @@ body:not(.is-phone) .modal-bg {
   perspective: 240px;
 }
 
-.modal,
-.prompt {
+.modal {
   transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
 
   @starting-style {
@@ -143,43 +135,6 @@ body.is-phone .suggestion-container {
   }
   .menu-item-icon .svg-icon {
     --icon-size: var(--icon-s);
-  }
-}
-
-// Prompt
-.prompt {
-  background-color: var(--modal-background);
-
-  .prompt-input,
-  .prompt-input:hover,
-  .prompt-input:focus,
-  .prompt-input:focus-visible {
-    background-color: transparent;
-    border-bottom-color: var(--divider-color);
-  }
-
-  .prompt-results {
-    flex: 1;
-  }
-  .suggestion-item {
-    padding: 12px;
-  }
-}
-
-body.is-tablet .prompt {
-  border: var(--prompt-border-width) solid var(--prompt-border-color);
-}
-body.is-phone {
-  .prompt {
-    transition: none;
-    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
-  }
-  .suggestion-item {
-    padding: 16px;
-  }
-
-  .suggestion-container {
-    border-radius: var(--radius-m);
   }
 }
 
