@@ -365,9 +365,6 @@ body.layout-cupertino:not(.is-mobile) {
       padding-top: 1px;
       margin-bottom: -1px;
     }
-    .workspace-tab-container {
-      outline: var(--border-width) solid var(--background-modifier-border);
-    }
   }
 
   &.theme-light .mod-root .workspace-tab-container {
@@ -391,6 +388,7 @@ body.layout-cupertino:not(.is-mobile) {
 
     .workspace-tab-container {
       overflow: visible;
+      outline: var(--border-width) solid var(--background-modifier-border);
     }
     .workspace-leaf {
       border-radius: var(--radius-s);
