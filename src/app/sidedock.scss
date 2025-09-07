@@ -2,8 +2,6 @@ body {
   --nav-item-padding: calc(8px * var(--density-modifier)) 8px calc(8px * var(--density-modifier)) 24px;
   --nav-indentation-guide-width: 0px;
 
-  --nav-item-weight-active: calc(var(--font-weight) + var(--bold-modifier));
-
   --ribbon-width: var(--header-height);
   --ribbon-background: transparent;
   --ribbon-background-collapsed: var(--ribbon-background);
@@ -55,6 +53,7 @@ body:not(.is-focused) {
 body:not(.nav-item-subtle, .nav-item-strong) {
   --nav-item-background-hover: transparent;
   --nav-item-background-active: transparent;
+  --nav-item-weight-active: calc(var(--font-weight) + var(--bold-modifier));
 
   &:not(.is-mobile) {
     --nav-item-weight-hover: var(--font-medium);
@@ -62,6 +61,10 @@ body:not(.nav-item-subtle, .nav-item-strong) {
 
   &.accented-interface {
     --nav-item-color-active: var(--text-accent);
+  }
+
+  .tree-item-self:not(:hover) .tree-item-inner {
+    transition: var(--anim-duration-moderate), font-weight 0s;
   }
 
   .nav-files-container .tree-item-self.is-active::before {
@@ -89,9 +92,6 @@ body.bold-folders .nav-folder-title {
 .tree-item-self,
 .tree-item-inner {
   align-items: center;
-}
-.tree-item-self:not(:hover) .tree-item-inner {
-  transition: var(--anim-duration-moderate), font-weight 0s;
 }
 
 // Ribbon

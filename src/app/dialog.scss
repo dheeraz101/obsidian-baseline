@@ -166,9 +166,6 @@ body.is-phone .suggestion-container {
 
 body:not(.is-mobile) {
   .modal.mod-sidebar-layout {
-    .vertical-tab-nav-item:not(:hover) {
-      transition: var(--anim-duration-moderate), font-weight 0s;
-    }
     .vertical-tab-nav-item:hover:not(.is-active) {
       font-weight: var(--nav-item-weight-hover);
       background-color: var(--nav-item-background-hover);
@@ -181,14 +178,19 @@ body:not(.is-mobile) {
       color: var(--nav-item-color-active);
     }
   }
-  &:not(.nav-item-subtle, .nav-item-strong) .modal.mod-sidebar-layout .vertical-tab-nav-item.is-active::before {
-    content: "";
-    position: absolute;
-    margin-left: -12px;
-    width: 4px;
-    height: 4px;
-    border-radius: var(--button-radius);
-    background-color: var(--nav-item-color-active);
+  &:not(.nav-item-subtle, .nav-item-strong) .modal.mod-sidebar-layout {
+    .vertical-tab-nav-item:not(:hover) {
+      transition: var(--anim-duration-moderate), font-weight 0s;
+    }
+    .vertical-tab-nav-item.is-active::before {
+      content: "";
+      position: absolute;
+      margin-left: -12px;
+      width: 4px;
+      height: 4px;
+      border-radius: var(--button-radius);
+      background-color: var(--nav-item-color-active);
+    }
   }
 }
 
