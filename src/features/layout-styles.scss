@@ -444,7 +444,7 @@ body.layout-macos:not(.is-mobile) {
   .mod-sidedock.mod-left-split {
     z-index: var(--layer-sidedock);
     border-radius: var(--radius-m);
-    display: flex !important;
+    display: flex;
     margin: 8px 0 8px 8px;
     height: -webkit-fill-available;
     overflow: hidden;
@@ -466,7 +466,7 @@ body.layout-macos:not(.is-mobile) {
   &.stacked-nav-off .mod-sidedock.mod-left-split {
     .mod-top-left-space .workspace-tab-header-container {
       height: calc(var(--header-height) - 16px);
-      padding: 4px 4px 4px calc(var(--frame-left-space) - 8px);
+      padding: 4px 4px 4px max(4px, calc(var(--frame-left-space) - 8px));
     }
     .workspace-leaf-content > .nav-header {
       padding-top: 8px;
