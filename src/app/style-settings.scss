@@ -580,12 +580,11 @@ settings:
 		level: 1
 		collapsed: true
 	-
-		id: interface-font
+		id: font-interface-override
 		title: Interface font
-		type: info-text
-		level: 1
-		markdown: true
-		description: Base font for all of Obsidian can be set in **Appearance** settings
+		description: Name of the font as it appears on your system
+		type: variable-text
+		default: 'Inter, system-ui, sans-serif'
 	-
 		id: density-modifier
 		title: Density
@@ -1075,12 +1074,11 @@ settings:
 		level: 1
 		collapsed: true
 	-
-		id: editor-font
+		id: font-text-override
 		title: Editor font
-		type: info-text
-		level: 1
-		markdown: true
-		description: Font for reading and editing view can be set in **Appearance** settings
+		description: Name of the font as it appears on your system
+		type: variable-text
+		default: 'Inter, system-ui, sans-serif'
 	-
 		id: focus-view
 		title: Focus view
@@ -1449,12 +1447,6 @@ settings:
 		type: heading
 		level: 2
 		collapsed: true
-    - 
-        id: heading-font-info
-		title: Change all headings font
-		description: Replace all headings font at once in **Appearance** settings - **Text font**
-        type: info-text
-		markdown: true
 	-
 		id: colorful-headings
 		title: Colorful headings

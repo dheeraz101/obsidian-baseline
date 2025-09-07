@@ -1,9 +1,9 @@
 body,
 body.theme-light,
 body.theme-dark {
-  --font-interface-theme: "Inter", system-ui, sans-serif;
-  --font-text-theme: "Inter", system-ui, sans-serif;
-  --font-print-theme: "Inter", system-ui, sans-serif;
+  --font-interface-theme: Inter;
+  --font-text-theme: Inter;
+  --font-print-theme: Inter;
 
   --titlebar-background: transparent;
   --titlebar-background-focused: transparent;
