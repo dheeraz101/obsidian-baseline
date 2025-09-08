@@ -24,10 +24,15 @@
   </head>
   <body>
     <div class="header">
-      <h1>
-        <a href=".."><i data-lucide="chevron-left"></i>Baseline for Obsidian</a> <span>/</span> Style Settings Migration Tool
-      </h1>
-      <a href="https://github.com/aaaaalexis/obsidian-baseline">View Baseline on GitHub</a>
+      <div class="header-title">
+        <h1>
+          <a href=".."><i data-lucide="chevron-left"></i>Baseline for Obsidian</a><span>/</span>
+        </h1>
+        <h1>Style Settings Migration Tool</h1>
+      </div>
+      <div class="header-actions">
+        <a href="https://github.com/aaaaalexis/obsidian-baseline" class="header-link">View Baseline on GitHub</a>
+      </div>
     </div>
     <div class="content">
       <div class="setting-container" title="Export your existing style settings, then paste here to migrate to Baseline-compatible settings.">
@@ -60,7 +65,7 @@
         </div>
       </div>
       <p>Export your existing Style Settings, then paste here to migrate to Baseline-compatible settings.</p>
-      <div class="panels-container">
+      <div class="panel-container">
         <div class="input-panel">
           <textarea
             class="prefs-input"
@@ -85,8 +90,10 @@ Supported themes:
         <div class="output-panel">
           <textarea class="prefs-output" disabled readonly></textarea>
           <div class="panel-actions">
-            <button class="copy-btn">Copy to Clipboard</button>
-            <a class="download-link" href="#" download="baseline-style-settings.json"><button class="download-btn">Download</button></a>
+            <button class="copy-btn">
+              <span><i data-lucide="copy"></i>Copy</span>
+            </button>
+            <a class="download-btn" href="#" download="baseline-style-settings.json"><button>Download</button></a>
           </div>
           <div class="conflict-container"></div>
           <div class="unsupported-container"></div>
@@ -101,7 +108,7 @@ Supported themes:
         const prefsInput = $(".prefs-input");
         const newPrefsOutput = $(".prefs-output");
         const copyBtn = $(".copy-btn");
-        const downloadLink = $(".download-link");
+        const downloadLink = $(".download-btn");
         const warningDiv = $(".warning-container");
         const conflictDiv = $(".conflict-container");
         const unsupportedDiv = $(".unsupported-container");
@@ -330,8 +337,8 @@ Supported themes:
         // UI actions
         copyBtn.onclick = () => {
           navigator.clipboard.writeText(newPrefsOutput.value).then(() => {
-            copyBtn.textContent = "Copied!";
-            setTimeout(() => (copyBtn.textContent = "Copy to Clipboard"), 2000);
+            copyBtn.innerHTML = "<span>Copied!</span>";
+            setTimeout(() => (copyBtn.innerHTML = "<span>Copy</span>"), 1000);
           });
         };
         clearBtn.onclick = () => {

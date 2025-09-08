@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Baseline for Obsidian</title>
+    <link rel="stylesheet" href="../main.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-38V3HD97K9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-38V3HD97K9");
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="header-title">
+        <h1>
+          <a href=".."><i data-lucide="chevron-left"></i>Baseline for Obsidian</a><span>/</span>
+        </h1>
+        <h1>Marketplace</h1>
+      </div>
+      <div class="header-actions">
+        <a href="https://github.com/aaaaalexis/obsidian-baseline/blob/main/docs/marketplace/README.md" class="submit-btn">
+          <button><i data-lucide="upload"></i>Submit</button>
+        </a>
+        <a href="https://github.com/aaaaalexis/obsidian-baseline" class="header-link">View Baseline on GitHub</a>
+      </div>
+    </div>
+    <div class="content">
+      <div class="setting-container" title="Choose your favorite preset, copy or download it, then import into Style Settings.">
+        <div class="setting">
+          <div class="setting-sidebar">
+            <div class="sidebar-section">
+              <div class="sidebar-title">Community plugins</div>
+              <div class="sidebar-link is-active">Style Settings</div>
+            </div>
+          </div>
+          <div class="setting-content">
+            <div class="setting-header">
+              <div class="setting-search">
+                <i data-lucide="search"></i>
+                Search Style Settings...
+              </div>
+              <div class="setting-actions">
+                <button>Import</button>
+                <button>Export</button>
+              </div>
+            </div>
+            <div class="setting-list">
+              <div class="setting-item">
+                <i data-lucide="chevron-right"></i>
+                <div class="setting-item-name">Baseline</div>
+                <div class="setting-item-actions"><i data-lucide="rotate-ccw"></i><i data-lucide="cloud-download"></i></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p>Choose your favorite preset, copy or download it, then import into Style Settings.</p>
+      <div class="panel-container"></div>
+    </div>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+      const fetchJSON = async (path) => ((await fetch(path)).ok ? fetch(path).then((r) => r.json()) : null);
+
+      function parseMarkdownLinks(text) {
+        return text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+      }
+
+      async function loadPresets() {
+        const mainPreset = await fetchJSON("preset.json");
+        if (!mainPreset) return;
+        const presetDetails = {};
+        function getImage(id) {
+          const light = `img/${id}@light.png`,
+            dark = `img/${id}@dark.png`,
+            base = `img/${id}.png`;
+          return { light, dark, base };
+        }
+        const panels = await Promise.all(
+          Object.entries(mainPreset).map(async ([name, meta]) => {
+            const presetFile = meta.id + ".json";
+            const img = getImage(meta.id);
+            presetDetails[meta.id] = (await fetchJSON("preset/" + presetFile)) || {};
+            const desc = meta.description ? parseMarkdownLinks(meta.description) : "No description available.";
+            let imageHTML = `<picture>`;
+            imageHTML += `<source srcset="${img.dark}" media="(prefers-color-scheme: dark)">`;
+            imageHTML += `<source srcset="${img.light}" media="(prefers-color-scheme: light)">`;
+            imageHTML += `<img src="${img.base}" class="preset-img" data-light="${img.light}" data-dark="${img.dark}" />`;
+            imageHTML += `</picture>`;
+            return `<div class="preset-panel" data-preset="${meta.id}"><div class="preset-info"><h2>${name}</h2><p>By <a href="${meta.url}">${meta.author}</a></p></div>${imageHTML}<p>${desc}</p><div class="panel-actions"><button class="copy-btn"><span><i data-lucide="copy"></i>Copy</span></button><a class="download-btn" href="preset/${presetFile}" download="baseline-${presetFile}"><button>Download</button></a></div></div>`;
+          })
+        );
+        document.querySelector(".panel-container").innerHTML = panels.reverse().join("");
+        lucide.createIcons();
+        document.querySelectorAll(".copy-btn").forEach((copyBtn, idx) => {
+          const originalContent = copyBtn.innerHTML;
+          copyBtn.onclick = () => {
+            const presetId = document.querySelectorAll(".preset-panel")[idx].dataset.preset;
+            const details = presetDetails[presetId];
+            const meta = Object.values(mainPreset).find((m) => m.id === presetId);
+            if (details) {
+              navigator.clipboard.writeText(JSON.stringify(details, null, 2)).then(() => {
+                copyBtn.innerHTML = "<span>Copied!</span>";
+                setTimeout(() => {
+                  copyBtn.innerHTML = originalContent;
+                  lucide.createIcons();
+                }, 1000);
+                if (window.gtag && meta && meta.id) {
+                  gtag("event", "copy_preset", { preset: meta.id });
+                }
+              });
+            }
+          };
+        });
+        document.querySelectorAll(".download-btn").forEach((downloadBtn, idx) => {
+          downloadBtn.addEventListener("click", function () {
+            const presetId = document.querySelectorAll(".preset-panel")[idx].dataset.preset;
+            const meta = Object.values(mainPreset).find((m) => m.id === presetId);
+            if (window.gtag && meta && meta.id) {
+              gtag("event", "download_preset", { preset: meta.id });
+            }
+          });
+        });
+      }
+      loadPresets();
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const overlay = Object.assign(document.createElement("div"), {
+          className: "lightbox-overlay",
+          innerHTML: '<img class="lightbox-img" />',
+        });
+        document.body.appendChild(overlay);
+        const lightboxImg = overlay.querySelector(".lightbox-img");
+        let closingHandler;
+
+        function openLightbox(src) {
+          overlay.classList.remove("closing");
+          if (closingHandler) lightboxImg.removeEventListener("transitionend", closingHandler);
+          closingHandler = null;
+          lightboxImg.src = src;
+          overlay.classList.add("active");
+        }
+
+        function closeLightbox() {
+          if (!overlay.classList.contains("active")) return;
+          overlay.classList.add("closing");
+          overlay.classList.remove("active");
+          if (closingHandler) lightboxImg.removeEventListener("transitionend", closingHandler);
+          closingHandler = function handler() {
+            overlay.classList.remove("closing");
+            lightboxImg.src = "";
+            lightboxImg.removeEventListener("transitionend", handler);
+            closingHandler = null;
+          };
+          lightboxImg.addEventListener("transitionend", closingHandler);
+        }
+
+        document.addEventListener("click", function (e) {
+          const picture = e.target.closest(".preset-panel picture");
+          if (picture) {
+            const img = picture.querySelector("img.preset-img");
+            if (img) {
+              const lightSrc = img.getAttribute("data-light");
+              const darkSrc = img.getAttribute("data-dark");
+              let src = img.src;
+              if (lightSrc || darkSrc) {
+                const isDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+                src = isDark ? darkSrc || lightSrc : lightSrc || darkSrc;
+              }
+              return openLightbox(src);
+            }
+          }
+          if (e.target === overlay || e.target === lightboxImg) return closeLightbox();
+        });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && overlay.classList.contains("active")) closeLightbox();
+        });
+      });
+    </script>
+  </body>
+</html>

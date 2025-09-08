@@ -1,0 +1,20 @@
+{
+  "macOS Tahoe": {
+    "id": "tahoe",
+    "author": "Alexis C",
+    "url": "https://github.com/aaaaalexis",
+    "description": "Airy, translucent, and familiar look of macOS Tahoe."
+  },
+  "Cupertino": {
+    "id": "cupertino",
+    "author": "Alexis C",
+    "url": "https://github.com/aaaaalexis",
+    "description": "Inspired by Apple's timeless design philosophy."
+  },
+  "Sanctum": {
+    "id": "sanctum",
+    "author": "Alexis C",
+    "url": "https://github.com/aaaaalexis",
+    "description": "Styles from [Sanctum by José Daniel Mourão](https://github.com/jdanielmourao/obsidian-sanctum)."
+  }
+}
