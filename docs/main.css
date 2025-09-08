@@ -71,6 +71,7 @@ body {
     --color-base-90: #363636;
     --color-base-100: #222222;
     --background-secondary-alt: var(--color-base-05);
+    --background-modifier-form-field: var(--color-base-10);
     --text-normal: var(--color-base-100);
     --shadow-l: 0px 1.8px 7.3px rgba(0, 0, 0, 0.071), 0px 6.3px 24.7px rgba(0, 0, 0, 0.112), 0px 30px 90px rgba(0, 0, 0, 0.2);
   }
@@ -103,6 +104,7 @@ body {
     --color-base-90: #cdcdcd;
     --color-base-100: #dadada;
     --background-secondary-alt: var(--color-base-30);
+    --background-modifier-form-field: var(--color-base-25);
     --interactive-normal: var(--color-base-30);
     --interactive-hover: var(--color-base-35);
     --text-normal: var(--color-base-90);
@@ -347,7 +349,7 @@ button svg {
   gap: 8px;
   border: 1px solid var(--background-modifier-border);
   border-radius: 4px;
-  background: var(--background-primary);
+  background: var(--background-modifier-form-field);
   padding: 4px 8px;
   height: 32px;
   color: var(--text-faint);

@@ -96,16 +96,37 @@
             const img = getImage(meta.id);
             presetDetails[meta.id] = (await fetchJSON("preset/" + presetFile)) || {};
             const desc = meta.description ? parseMarkdownLinks(meta.description) : "No description available.";
-            let imageHTML = `<picture>`;
-            imageHTML += `<source srcset="${img.dark}" media="(prefers-color-scheme: dark)">`;
-            imageHTML += `<source srcset="${img.light}" media="(prefers-color-scheme: light)">`;
-            imageHTML += `<img src="${img.base}" class="preset-img" data-light="${img.light}" data-dark="${img.dark}" />`;
+            let imageHTML = `<picture><div class="preset-img-loader"></div>`;
+            imageHTML += `<source data-srcset="${img.dark}" media="(prefers-color-scheme: dark)">`;
+            imageHTML += `<source data-srcset="${img.light}" media="(prefers-color-scheme: light)">`;
+            imageHTML += `<img loading="lazy" decoding="async" data-base="${img.base}" data-light="${img.light}" data-dark="${img.dark}">`;
             imageHTML += `</picture>`;
             return `<div class="preset-panel" data-preset="${meta.id}"><div class="preset-info"><h2>${name}</h2><p>By <a href="${meta.url}">${meta.author}</a></p></div>${imageHTML}<p>${desc}</p><div class="panel-actions"><button class="copy-btn"><span><i data-lucide="copy"></i>Copy</span></button><a class="download-btn" href="preset/${presetFile}" download="baseline-${presetFile}"><button>Download</button></a></div></div>`;
           })
         );
         document.querySelector(".panel-container").innerHTML = panels.reverse().join("");
         lucide.createIcons();
+        function pickSrc(img) {
+          const { light, dark, base } = img.dataset;
+          const isDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+          return isDark ? dark || light || base : light || dark || base;
+        }
+
+        function loadAndReveal(picture) {
+          const img = picture.querySelector("img");
+          if (!img) return;
+          const src = pickSrc(img);
+          if (!src) return picture.classList.add("loaded");
+          const loader = new Image();
+          loader.onload = () => {
+            img.src = src;
+            requestAnimationFrame(() => picture.classList.add("loaded"));
+          };
+          loader.onerror = () => picture.classList.add("loaded");
+          loader.src = src;
+        }
+
+        document.querySelectorAll(".preset-panel picture").forEach(loadAndReveal);
         document.querySelectorAll(".copy-btn").forEach((copyBtn, idx) => {
           const originalContent = copyBtn.innerHTML;
           copyBtn.onclick = () => {
@@ -120,7 +141,7 @@
                   lucide.createIcons();
                 }, 1000);
                 if (window.gtag && meta && meta.id) {
-                  gtag("event", "copy_preset", { preset: meta.id });
+                  gtag("event", "preset_copy", { preset: meta.id });
                 }
               });
             }
@@ -131,7 +152,7 @@
             const presetId = document.querySelectorAll(".preset-panel")[idx].dataset.preset;
             const meta = Object.values(mainPreset).find((m) => m.id === presetId);
             if (window.gtag && meta && meta.id) {
-              gtag("event", "download_preset", { preset: meta.id });
+              gtag("event", "preset_download", { preset: meta.id });
             }
           });
         });
@@ -173,7 +194,7 @@
         document.addEventListener("click", function (e) {
           const picture = e.target.closest(".preset-panel picture");
           if (picture) {
-            const img = picture.querySelector("img.preset-img");
+            const img = picture.querySelector("img");
             if (img) {
               const lightSrc = img.getAttribute("data-light");
               const darkSrc = img.getAttribute("data-dark");

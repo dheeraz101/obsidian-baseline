@@ -109,6 +109,9 @@ textarea {
 }
 
 /* Settings Replica */
+.setting-search {
+  background: var(--background-primary);
+}
 .setting-actions button:last-child,
 .setting-item-actions svg:last-child {
   animation: pulse 3s infinite alternate;

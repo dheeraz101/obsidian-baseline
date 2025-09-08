@@ -108,7 +108,7 @@ Supported themes:
         const prefsInput = $(".prefs-input");
         const newPrefsOutput = $(".prefs-output");
         const copyBtn = $(".copy-btn");
-        const downloadLink = $(".download-btn");
+        const downloadBtn = $(".download-btn");
         const warningDiv = $(".warning-container");
         const conflictDiv = $(".conflict-container");
         const unsupportedDiv = $(".unsupported-container");
@@ -324,7 +324,7 @@ Supported themes:
         function updateOutput(prefs) {
           const str = Object.keys(prefs).length ? JSON.stringify(prefs, null, 2) : "";
           newPrefsOutput.value = str;
-          downloadLink.href = "data:text/json;charset=utf-8," + encodeURIComponent(str);
+          downloadBtn.href = "data:text/json;charset=utf-8," + encodeURIComponent(str);
         }
 
         async function showResults(prefs, unsupported, themeBases, conflicts) {
@@ -339,7 +339,15 @@ Supported themes:
           navigator.clipboard.writeText(newPrefsOutput.value).then(() => {
             copyBtn.innerHTML = "<span>Copied!</span>";
             setTimeout(() => (copyBtn.innerHTML = "<span>Copy</span>"), 1000);
+            if (typeof gtag === "function") {
+              gtag("event", "migration_copy");
+            }
           });
+        };
+        downloadBtn.onclick = function () {
+          if (typeof gtag === "function") {
+            gtag("event", "migration_download");
+          }
         };
         clearBtn.onclick = () => {
           prefsInput.value = "";
