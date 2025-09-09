@@ -584,7 +584,7 @@ settings:
 		title: Interface font
 		description: Name of the font as it appears on your system
 		type: variable-text
-		default: 'Inter, system-ui, sans-serif'
+		default: 'Inter'
 	-
 		id: density-modifier
 		title: Density
@@ -1078,7 +1078,13 @@ settings:
 		title: Editor font
 		description: Name of the font as it appears on your system
 		type: variable-text
-		default: 'Inter, system-ui, sans-serif'
+		default: 'Inter'
+	-
+		id: font-monospace-override
+		title: Monospace font
+		description: Name of the font as it appears on your system
+		type: variable-text
+		default: ''
 	-
 		id: focus-view
 		title: Focus view
