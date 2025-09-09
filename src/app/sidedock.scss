@@ -176,7 +176,10 @@ body .mod-sidedock {
   }
 }
 
-// Hide vault switcher
+// Vault switcher
+body:not(.is-mobile) .workspace-split.mod-left-split .workspace-sidedock-vault-profile {
+  background-color: transparent;
+}
 body:not(.is-mobile, .hide-vault-switcher-off) .mod-sidedock.mod-left-split {
   .workspace-sidedock-vault-profile {
     --tab-outline-width: 0px;
@@ -186,7 +189,6 @@ body:not(.is-mobile, .hide-vault-switcher-off) .mod-sidedock.mod-left-split {
     z-index: 1;
     pointer-events: none;
     align-items: unset;
-    background: transparent;
     gap: 0;
   }
   .workspace-sidedock-vault-profile::before {
