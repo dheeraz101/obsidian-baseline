@@ -20,6 +20,10 @@ body.theme-dark.contrast-dark-black {
 }
 
 body.theme-light.contrast-light-vivid {
+  &:not(.is-focused) .mod-root .workspace-tab-header-container {
+    opacity: 1;
+  }
+
   .mod-root .workspace-tab-header-container {
     background-color: var(--background-secondary);
   }
