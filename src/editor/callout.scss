@@ -9,8 +9,8 @@
   .callout:not([data-callout="note-toolbar"]) {
     font-size: var(--callout-size);
 
-    p:first-child,
-    .callout-content > *:first-child {
+    p:first-child:not(:only-child),
+    .callout-content > *:first-child:not(:only-child) {
       margin-top: 8px;
     }
 
