@@ -234,8 +234,8 @@
         "__fallback": "tabs-default",
         "tabs-default": "tabs-default",
         "tabs-square": "tabs-default",
-        "tabs-modern": "tabs-cupertino",
-        "tabs-plain-square": "tabs-cupertino",
+        "tabs-modern": "tabs-floating",
+        "tabs-plain-square": "tabs-floating",
         "tabs-underline": "tabs-underline"
       }
     },
@@ -428,11 +428,7 @@
       "category": "Colors",
       "name": "Dark theme accent"
     },
-    "anuppuccin-accent-toggle": {
-      "unsupported": true,
-      "category": "Colors",
-      "name": "Force custom accents"
-    },
+    "anuppuccin-accent-toggle": { "newId": "accented-interface" },
     "ctp-custom-rosewater": {
       "unsupported": true,
       "category": "Color Overrides",
@@ -1076,8 +1072,8 @@
         "anp-default-tab": "tabs-default",
         "anp-depth-tab-toggle": "tabs-default",
         "anp-mini-tab-toggle": "tabs-underline",
-        "anp-alternate-tab-toggle": "tabs-cupertino",
-        "anp-safari-tab-toggle": "tabs-cupertino"
+        "anp-alternate-tab-toggle": "tabs-floating",
+        "anp-safari-tab-toggle": "tabs-floating"
       }
     },
     "anp-alt-tab-custom-height": {

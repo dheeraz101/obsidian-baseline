@@ -38,7 +38,7 @@
       </div>
     </div>
     <div class="content">
-      <div class="setting-container" title="Choose your favorite preset, copy or download it, then import into Style Settings.">
+      <div class="setting-container" title='Click the "Import" button in Style Settings to import copied or downloaded presets.'>
         <div class="setting">
           <div class="setting-sidebar">
             <div class="sidebar-section">
@@ -68,127 +68,181 @@
         </div>
       </div>
       <p>Choose your favorite preset, copy or download it, then import into Style Settings.</p>
+      <div class="preset-actions">
+        <input type="search" class="preset-search" placeholder="Search presets..." />
+        <button class="preset-filter"><i data-lucide="filter"></i>New to old</button>
+      </div>
       <div class="panel-container"></div>
+      <div class="lightbox-overlay" aria-hidden="true">
+        <img class="lightbox-img" />
+        <p class="lightbox-title"></p>
+      </div>
     </div>
 
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest" onload="lucide.createIcons()"></script>
     <script>
-      lucide.createIcons();
-      const fetchJSON = async (path) => ((await fetch(path)).ok ? fetch(path).then((r) => r.json()) : null);
+      (() => {
+        const fetchJSON = async (path) => {
+          const r = await fetch(path);
+          return r.ok ? r.json() : null;
+        };
+        const mdLinks = (t) => t.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
 
-      function parseMarkdownLinks(text) {
-        return text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
-      }
-
-      async function loadPresets() {
-        const mainPreset = await fetchJSON("preset.json");
-        if (!mainPreset) return;
-        const presetDetails = {};
-        function getImage(id) {
-          const light = `img/${id}@light.png`,
-            dark = `img/${id}@dark.png`,
-            base = `img/${id}.png`;
-          return { light, dark, base };
-        }
-        const panels = await Promise.all(
-          Object.entries(mainPreset).map(async ([name, meta]) => {
-            const presetFile = meta.id + ".json";
-            const img = getImage(meta.id);
-            presetDetails[meta.id] = (await fetchJSON("preset/" + presetFile)) || {};
-            const desc = meta.description ? parseMarkdownLinks(meta.description) : "No description available.";
-            let imageHTML = `<picture><div class="preset-img-loader"></div>`;
-            imageHTML += `<source data-srcset="${img.dark}" media="(prefers-color-scheme: dark)">`;
-            imageHTML += `<source data-srcset="${img.light}" media="(prefers-color-scheme: light)">`;
-            imageHTML += `<img loading="lazy" decoding="async" data-base="${img.base}" data-light="${img.light}" data-dark="${img.dark}">`;
-            imageHTML += `</picture>`;
-            return `<div class="preset-panel" data-preset="${meta.id}"><div class="preset-info"><h2>${name}</h2><p>By <a href="${meta.url}">${meta.author}</a></p></div>${imageHTML}<p>${desc}</p><div class="panel-actions"><button class="copy-btn"><span><i data-lucide="copy"></i>Copy</span></button><a class="download-btn" href="preset/${presetFile}" download="baseline-${presetFile}"><button>Download</button></a></div></div>`;
-          })
-        );
-        document.querySelector(".panel-container").innerHTML = panels.reverse().join("");
-        lucide.createIcons();
-        function pickSrc(img) {
+        const pickSrc = (img) => {
           const { light, dark, base } = img.dataset;
-          const isDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-          return isDark ? dark || light || base : light || dark || base;
-        }
+          const darkPref = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+          return darkPref ? dark || light || base : light || dark || base;
+        };
 
-        function loadAndReveal(picture) {
+        const loadAndReveal = (picture) => {
           const img = picture.querySelector("img");
           if (!img) return;
           const src = pickSrc(img);
-          if (!src) return picture.classList.add("loaded");
+          if (!src) return picture.classList.remove("loading");
           const loader = new Image();
           loader.onload = () => {
             img.src = src;
-            requestAnimationFrame(() => picture.classList.add("loaded"));
+            requestAnimationFrame(() => picture.classList.remove("loading"));
           };
-          loader.onerror = () => picture.classList.add("loaded");
+          loader.onerror = () => picture.classList.remove("loading");
           loader.src = src;
-        }
+        };
 
-        document.querySelectorAll(".preset-panel picture").forEach(loadAndReveal);
-        document.querySelectorAll(".copy-btn").forEach((copyBtn, idx) => {
-          const originalContent = copyBtn.innerHTML;
-          copyBtn.onclick = () => {
-            const presetId = document.querySelectorAll(".preset-panel")[idx].dataset.preset;
-            const details = presetDetails[presetId];
-            const meta = Object.values(mainPreset).find((m) => m.id === presetId);
-            if (details) {
-              navigator.clipboard.writeText(JSON.stringify(details, null, 2)).then(() => {
-                copyBtn.innerHTML = "<span>Copied!</span>";
-                setTimeout(() => {
-                  copyBtn.innerHTML = originalContent;
-                  lucide.createIcons();
-                }, 1000);
-                if (window.gtag && meta && meta.id) {
-                  gtag("event", "preset_copy", { preset: meta.id });
-                }
-              });
-            }
+        const loadPresets = async () => {
+          const mainPreset = await fetchJSON("preset.json");
+          if (!mainPreset) return;
+          const presetDetails = {};
+
+          const items = await Promise.all(
+            Object.entries(mainPreset).map(async ([name, meta]) => {
+              const presetFile = `${meta.id}.json`;
+              const img = { light: `img/${meta.id}@light.png`, dark: `img/${meta.id}@dark.png`, base: `img/${meta.id}.png` };
+              presetDetails[meta.id] = (await fetchJSON(`preset/${presetFile}`)) || {};
+              const desc = meta.description ? mdLinks(meta.description) : "No description available.";
+              const imageHTML = `<picture class="loading"><div class="preset-img-loader"></div><source data-srcset="${img.dark}" media="(prefers-color-scheme: dark)"><source data-srcset="${img.light}" media="(prefers-color-scheme: light)"><img loading="lazy" decoding="async" data-base="${img.base}" data-light="${img.light}" data-dark="${img.dark}"></picture>`;
+              const html = `<div class="preset-panel" data-preset="${meta.id}"><div class="preset-info"><h2>${name}</h2><p>By <a href="${meta.url}">${meta.author}</a></p></div>${imageHTML}<p>${desc}</p><div class="panel-actions"><button class="copy-btn"><span><i data-lucide="copy"></i>Copy</span></button><a class="download-btn" href="preset/${presetFile}" download="baseline-${presetFile}"><button>Download</button></a></div></div>`;
+              return { name, id: meta.id, meta, html, searchable: (name + " " + (meta.author || "") + " " + (meta.description || "")).toLowerCase() };
+            })
+          );
+
+          const container = document.querySelector(".panel-container");
+          const searchInput = document.querySelector(".preset-search");
+          const filterBtn = document.querySelector(".preset-filter");
+
+          const modes = ["new", "old", "a-z", "z-a"];
+          let modeIndex = 0;
+
+          const labelFor = (m) => ({ new: "New to old", old: "Old to new", "a-z": "A to Z", "z-a": "Z to A" }[m]);
+          const updateFilterLabel = () => {
+            filterBtn.innerHTML = `<i data-lucide="filter"></i>${labelFor(modes[modeIndex])}`;
+            lucide.createIcons();
           };
-        });
-        document.querySelectorAll(".download-btn").forEach((downloadBtn, idx) => {
-          downloadBtn.addEventListener("click", function () {
-            const presetId = document.querySelectorAll(".preset-panel")[idx].dataset.preset;
-            const meta = Object.values(mainPreset).find((m) => m.id === presetId);
-            if (window.gtag && meta && meta.id) {
-              gtag("event", "preset_download", { preset: meta.id });
-            }
+
+          const render = () => {
+            const q = (searchInput.value || "").trim().toLowerCase();
+            let list = items.slice();
+            const mode = modes[modeIndex];
+            if (mode === "new") list = list.slice().reverse();
+            else if (mode === "a-z") list.sort((a, b) => a.name.localeCompare(b.name));
+            else if (mode === "z-a") list.sort((a, b) => b.name.localeCompare(a.name));
+
+            if (q) list = list.filter((i) => i.searchable.includes(q));
+            container.innerHTML = list.map((i) => i.html).join("");
+            lucide.createIcons();
+            container.querySelectorAll(".preset-panel picture").forEach(loadAndReveal);
+
+            container.querySelectorAll(".copy-btn").forEach((btn, idx) => {
+              const orig = btn.innerHTML;
+              btn.onclick = () => {
+                const presetId = container.querySelectorAll(".preset-panel")[idx].dataset.preset;
+                const details = presetDetails[presetId];
+                const meta = Object.values(mainPreset).find((m) => m.id === presetId);
+                if (!details) return;
+                navigator.clipboard.writeText(JSON.stringify(details, null, 2)).then(() => {
+                  btn.innerHTML = "<span>Copied!</span>";
+                  setTimeout(() => {
+                    btn.innerHTML = orig;
+                    lucide.createIcons();
+                  }, 1000);
+                  if (window.gtag && meta?.id) gtag("event", "preset_copy", { preset: meta.id });
+                });
+              };
+            });
+
+            container.querySelectorAll(".download-btn").forEach((dl, idx) =>
+              dl.addEventListener("click", () => {
+                const presetId = container.querySelectorAll(".preset-panel")[idx].dataset.preset;
+                const meta = Object.values(mainPreset).find((m) => m.id === presetId);
+                if (window.gtag && meta?.id) gtag("event", "preset_download", { preset: meta.id });
+              })
+            );
+          };
+
+          updateFilterLabel();
+          let debounce;
+          searchInput.addEventListener("input", () => {
+            clearTimeout(debounce);
+            debounce = setTimeout(render, 150);
           });
-        });
-      }
-      loadPresets();
+          filterBtn.addEventListener("click", () => {
+            modeIndex = (modeIndex + 1) % modes.length;
+            updateFilterLabel();
+            render();
+          });
+
+          render();
+        };
+        loadPresets();
+      })();
     </script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        const overlay = Object.assign(document.createElement("div"), {
-          className: "lightbox-overlay",
-          innerHTML: '<img class="lightbox-img" />',
-        });
-        document.body.appendChild(overlay);
+        const overlay = document.querySelector(".lightbox-overlay");
+        if (!overlay) return;
         const lightboxImg = overlay.querySelector(".lightbox-img");
-        let closingHandler;
+        const lightboxThemeName = overlay.querySelector(".lightbox-title");
+        let hiddenHandler;
 
-        function openLightbox(src) {
-          overlay.classList.remove("closing");
-          if (closingHandler) lightboxImg.removeEventListener("transitionend", closingHandler);
-          closingHandler = null;
+        let openedPicture = null;
+        function openLightbox(src, picture) {
+          overlay.classList.remove("hidden");
+          if (hiddenHandler) lightboxImg.removeEventListener("transitionend", hiddenHandler);
+          hiddenHandler = null;
           lightboxImg.src = src;
           overlay.classList.add("active");
+          if (picture) {
+            const panel = picture.closest(".preset-panel");
+            if (panel) {
+              const themeName = panel.querySelector("h2");
+              lightboxThemeName.textContent = themeName ? themeName.textContent : "";
+            } else {
+              lightboxThemeName.textContent = "";
+            }
+            picture.classList.add("opened");
+            openedPicture = picture;
+          } else {
+            lightboxThemeName.textContent = "";
+            openedPicture = null;
+          }
         }
 
         function closeLightbox() {
           if (!overlay.classList.contains("active")) return;
-          overlay.classList.add("closing");
+          overlay.classList.add("hidden");
           overlay.classList.remove("active");
-          if (closingHandler) lightboxImg.removeEventListener("transitionend", closingHandler);
-          closingHandler = function handler() {
-            overlay.classList.remove("closing");
+          if (openedPicture) {
+            openedPicture.classList.remove("opened");
+            openedPicture = null;
+          }
+          if (hiddenHandler) lightboxImg.removeEventListener("transitionend", hiddenHandler);
+          hiddenHandler = function handler() {
+            overlay.classList.remove("hidden");
             lightboxImg.src = "";
+            lightboxThemeName.textContent = "";
             lightboxImg.removeEventListener("transitionend", handler);
-            closingHandler = null;
+            hiddenHandler = null;
           };
-          lightboxImg.addEventListener("transitionend", closingHandler);
+          lightboxImg.addEventListener("transitionend", hiddenHandler);
         }
 
         document.addEventListener("click", function (e) {
@@ -203,7 +257,7 @@
                 const isDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
                 src = isDark ? darkSrc || lightSrc : lightSrc || darkSrc;
               }
-              return openLightbox(src);
+              return openLightbox(src, picture);
             }
           }
           if (e.target === overlay || e.target === lightboxImg) return closeLightbox();

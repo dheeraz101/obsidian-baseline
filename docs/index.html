@@ -46,21 +46,15 @@
 
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
-      lucide.createIcons();
-    </script>
-    <script>
-      document.querySelectorAll(".link-panel").forEach(function (link) {
-        link.addEventListener("click", function (e) {
-          var label = link.querySelector("h2")?.textContent?.trim() || link.href;
-          if (typeof gtag === "function") {
-            gtag("event", "journey_click", {
-              event_category: "navigation",
-              event_label: label,
-              transport_type: "beacon",
-            });
-          }
+      (() => {
+        lucide.createIcons();
+        document.querySelectorAll(".link-panel").forEach((link) => {
+          link.addEventListener("click", () => {
+            const label = link.querySelector("h2")?.textContent.trim() || link.href;
+            if (typeof gtag === "function") gtag("event", "journey_click", { event_category: "navigation", event_label: label, transport_type: "beacon" });
+          });
         });
-      });
+      })();
     </script>
   </body>
 </html>

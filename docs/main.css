@@ -12,15 +12,15 @@
 }
 @keyframes workspaceLeafIn {
   from {
-    opacity: 0;
     transform: scale(0.95);
+    opacity: 0;
     filter: blur(4px);
   }
 }
 @keyframes workspaceLeafOut {
   to {
-    opacity: 0;
     transform: scale(0.95);
+    opacity: 0;
     filter: blur(4px);
   }
 }
@@ -117,46 +117,46 @@ body {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   margin: 0 auto;
   background-color: var(--background-secondary);
   padding: 48px 8px;
   width: 95vw;
   max-width: 1024px;
+  min-height: 100vh;
   color: var(--text-normal);
   line-height: 1.5;
-  font-family: "Inter", sans-serif;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  min-height: 100vh;
+  font-family: "Inter", system-ui, sans-serif;
 }
 
 h1 {
   margin: 0;
+  font-weight: normal;
   font-size: 1.802em;
   line-height: 1.2;
-  font-family: "Instrument Serif", sans-serif;
+  font-family: "Instrument Serif", system-ui, sans-serif;
   letter-spacing: -0.015em;
-  font-weight: normal;
 }
 h2 {
   margin: 0;
+  font-weight: normal;
   font-size: 1.602em;
   line-height: 1.2;
-  font-family: "Instrument Serif", sans-serif;
+  font-family: "Instrument Serif", system-ui, sans-serif;
   letter-spacing: -0.015em;
-  font-weight: normal;
 }
 p {
-  width: 100%;
   margin: 0;
+  width: 100%;
+  color: var(--text-muted);
   font-size: 0.85rem;
   text-align: center;
-  color: var(--text-muted);
 }
 p a {
   color: var(--text-normal);
-  font-weight: 500;
+  font-weight: 600;
 }
 a {
   transition: 160ms;
@@ -173,35 +173,36 @@ a button {
   flex-wrap: wrap;
   align-items: center;
   gap: 8px;
+  padding: 0 4px;
 }
 .header-title {
-  margin-right: auto;
   display: inline-flex;
   flex-wrap: wrap;
+  margin-right: auto;
 }
 .header-title h1 a {
-  color: var(--text-normal);
   display: inline-flex;
   align-items: center;
+  color: var(--text-normal);
 }
 .header-title h1 a svg.lucide-chevron-left {
-  color: var(--text-faint);
   position: absolute;
   opacity: 0;
   transition: 320ms cubic-bezier(0.1, 0, 0.1, 1.25);
+  color: var(--text-faint);
 }
 .header-title h1 a:hover svg.lucide-chevron-left {
-  opacity: 1;
   transform: translateX(-1em);
+  opacity: 1;
 }
 .header-title h1 span {
-  color: var(--text-faint);
   margin: 0 8px;
+  color: var(--text-faint);
 }
 .header-actions {
   display: flex;
-  gap: 16px;
   align-items: center;
+  gap: 16px;
 }
 .header-actions > a {
   color: var(--text-muted);
@@ -224,14 +225,15 @@ a button {
 }
 .panel-actions {
   display: flex;
-  gap: 0.5rem;
   align-items: center;
+  gap: 0.5rem;
 }
 
 button {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  gap: 8px;
   transition: 160ms;
   cursor: pointer;
   border: 1px solid var(--background-modifier-border);
@@ -240,9 +242,8 @@ button {
   padding: 0 16px;
   height: 32px;
   color: var(--text-normal);
-  font-family: "Inter", sans-serif;
   font-size: 0.85rem;
-  gap: 8px;
+  font-family: "Inter", system-ui, sans-serif;
 }
 button:hover {
   background-color: var(--interactive-hover);
@@ -267,9 +268,9 @@ button svg {
   transition: 320ms cubic-bezier(0.1, 0, 0.1, 1.25);
 
   @starting-style {
-    filter: blur(4px);
-    scale: 0.75;
+    transform: scale(0.75);
     opacity: 0;
+    filter: blur(4px);
   }
 }
 .download-btn,
@@ -278,14 +279,20 @@ button svg {
 }
 
 /* Settings Replica */
+@media (max-width: 480px) {
+  .setting-container {
+    display: none;
+  }
+}
+
 .setting-container {
+  cursor: not-allowed;
   border: 1px solid var(--background-modifier-border);
   border-radius: 24px;
   background-color: var(--background-primary);
   padding: 32px 32px 0;
   overflow: hidden;
   user-select: none;
-  cursor: not-allowed;
 }
 .setting-container * {
   cursor: not-allowed;

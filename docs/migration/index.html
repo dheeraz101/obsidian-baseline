@@ -35,7 +35,7 @@
       </div>
     </div>
     <div class="content">
-      <div class="setting-container" title="Export your existing style settings, then paste here to migrate to Baseline-compatible settings.">
+      <div class="setting-container" title='Click the "Export" on top or the cloud icon for selected theme to export your settings.'>
         <div class="setting">
           <div class="setting-sidebar">
             <div class="sidebar-section">
@@ -103,10 +103,9 @@ Supported themes:
 
     <script>
       (() => {
-        // DOM helpers
-        const $ = (s, root = document) => root.querySelector(s);
+        const $ = (s, r = document) => r.querySelector(s);
         const prefsInput = $(".prefs-input");
-        const newPrefsOutput = $(".prefs-output");
+        const prefsOutput = $(".prefs-output");
         const copyBtn = $(".copy-btn");
         const downloadBtn = $(".download-btn");
         const warningDiv = $(".warning-container");
@@ -114,7 +113,6 @@ Supported themes:
         const unsupportedDiv = $(".unsupported-container");
         const clearBtn = $(".clear-btn");
 
-        // Small shared helpers
         const jsonCache = new Map();
         const fetchJSONOnce = async (url) => {
           if (jsonCache.has(url)) return jsonCache.get(url);
@@ -127,24 +125,17 @@ Supported themes:
         const getMapping = () => fetchJSONOnce("mapping.json");
         const getBaselineLabels = () => fetchJSONOnce("mapping-baseline.json");
         const stripThemeSuffix = (s) => s.replace(/@@(light|dark)$/i, "");
-        const isHexColor6 = (v) => typeof v === "string" && /^#[0-9A-Fa-f]{6}$/.test(v);
-        const isColorCode = (v) => {
-          if (typeof v !== "string") return false;
-          return /^#[0-9A-Fa-f]{3,8}$/.test(v) || /^rgb\s*\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*\)$/.test(v) || /^rgba\s*\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*,\s*(0|1|0?\.\d+)\s*\)$/.test(v) || /^hsl\s*\(\s*\d+\s*,\s*\d+%\s*,\s*\d+%\s*\)$/.test(v) || /^hsla\s*\(\s*\d+\s*,\s*\d+%\s*,\s*\d+%\s*,\s*(0|1|0?\.\d+)\s*\)$/.test(v);
-        };
-        const groupBy = (arr, keyFn) => arr.reduce((m, x) => ((m[keyFn(x)] ??= []).push(x), m), {});
-        const setHTML = (node, html) => (node.innerHTML = html || "");
+        const isHex6 = (v) => typeof v === "string" && /^#[0-9A-Fa-f]{6}$/.test(v);
+        const isColorCode = (v) => typeof v === "string" && (/^#[0-9A-Fa-f]{3,8}$/.test(v) || /^rgb\s*\(.*\)$/.test(v) || /^rgba\s*\(.*\)$/.test(v) || /^hsl\s*\(.*\)$/.test(v) || /^hsla\s*\(.*\)$/.test(v));
+        const groupBy = (arr, fn) => arr.reduce((m, x) => ((m[fn(x)] ??= []).push(x), m), {});
+        const setHTML = (n, h = "") => (n.innerHTML = h);
 
-        function migratePrefs(mapping, oldPrefs) {
+        const migratePrefs = (mapping, oldPrefs) => {
           const newPrefs = {},
             unsupported = [],
             conflicts = {},
             themeBases = {};
-
-          for (const themeKey in mapping) {
-            if (mapping[themeKey]?.__name) themeBases[themeKey] = mapping[themeKey].__name;
-          }
-
+          for (const t in mapping) if (mapping[t]?.__name) themeBases[t] = mapping[t].__name;
           for (const k in oldPrefs) {
             if (!Object.hasOwnProperty.call(oldPrefs, k)) continue;
             const seg = k.split("@@");
@@ -152,129 +143,86 @@ Supported themes:
             const base = seg[0];
             const themeKey = Object.keys(themeBases).find((t) => base.startsWith(t));
             if (!themeKey) continue;
-
-            const newBase = "baseline-style";
-            const oldId = seg[1];
-            const extra = seg.slice(2);
-            const themeMapping = mapping[themeKey];
-            const rules = Array.isArray(themeMapping[oldId]) ? themeMapping[oldId] : [themeMapping[oldId]];
+            const [, oldId, ...extra] = seg;
+            const rules = Array.isArray(mapping[themeKey][oldId]) ? mapping[themeKey][oldId] : [mapping[themeKey][oldId]];
             const val = oldPrefs[k];
-
             if (!rules[0]) {
-              const newKey = [newBase, oldId, ...extra].join("@@");
-              if (newPrefs[newKey] !== undefined) (conflicts[newKey] ??= [newPrefs[newKey]]).push(val);
-              else newPrefs[newKey] = val;
+              const nk = ["baseline-style", oldId, ...extra].join("@@");
+              newPrefs[nk] !== undefined ? (conflicts[nk] ??= [newPrefs[nk]]).push(val) : (newPrefs[nk] = val);
               continue;
             }
-
             for (const rule of rules) {
               if (!rule) continue;
               if (rule.unsupported) {
-                unsupported.push({
-                  name: rule.name || `Key '${oldId}'`,
-                  category: rule.category || "General",
-                  oldValue: val,
-                  theme: themeKey,
-                });
+                unsupported.push({ name: rule.name || `Key '${oldId}'`, category: rule.category || "General", oldValue: val, theme: themeKey });
                 continue;
               }
-
               let newVal = val;
               let newKey = rule.newId || oldId;
-
               if (rule.valueMapping) {
-                const vRule = rule.valueMapping[val];
-                if (vRule === undefined) {
+                const vr = rule.valueMapping[val];
+                if (vr === undefined) {
                   if (rule.valueMapping.__fallback !== undefined) newVal = rule.valueMapping.__fallback;
                   else {
-                    unsupported.push({
-                      name: `Value '${val}' for setting '${oldId}'`,
-                      category: rule.category || "Unsupported Options",
-                      theme: themeKey,
-                    });
+                    unsupported.push({ name: `Value '${val}' for setting '${oldId}'`, category: rule.category || "Unsupported Options", theme: themeKey });
                     continue;
                   }
-                } else if (vRule?.unsupported) {
-                  unsupported.push({
-                    name: vRule.name || `Option '${val}'`,
-                    category: vRule.category || "General",
-                    theme: themeKey,
-                  });
+                } else if (vr?.unsupported) {
+                  unsupported.push({ name: vr.name || `Option '${val}'`, category: vr.category || "General", theme: themeKey });
                   continue;
-                } else newVal = vRule;
+                } else newVal = vr;
               }
-
-              const assignVal = (nk) => {
-                const finalKey = [newBase, nk, ...extra].join("@@");
-                if (newPrefs[finalKey] !== undefined) (conflicts[finalKey] ??= [newPrefs[finalKey]]).push(newVal);
-                else newPrefs[finalKey] = newVal;
+              const assign = (nk) => {
+                const final = ["baseline-style", nk, ...extra].join("@@");
+                if (newPrefs[final] !== undefined) (conflicts[final] ??= [newPrefs[final]]).push(newVal);
+                else newPrefs[final] = newVal;
               };
-
-              Array.isArray(newKey) ? newKey.forEach(assignVal) : assignVal(newKey);
+              Array.isArray(newKey) ? newKey.forEach(assign) : assign(newKey);
             }
           }
-
-          // Collapse identical conflict values and dedupe
-          for (const key in conflicts) {
-            const vals = conflicts[key];
+          for (const k in conflicts) {
+            const vals = conflicts[k];
             if (vals.every((v) => v === vals[0])) {
-              newPrefs[key] = vals[0];
-              delete conflicts[key];
-            } else {
-              conflicts[key] = Array.from(new Set(vals));
-            }
+              newPrefs[k] = vals[0];
+              delete conflicts[k];
+            } else conflicts[k] = Array.from(new Set(vals));
           }
-
           return { newPrefs, unsupported, themeBases, conflicts };
-        }
+        };
 
-        async function renderWarnings(prefs) {
+        const renderWarnings = async (prefs) => {
           const labels = (await getBaselineLabels().catch(() => ({}))) || {};
-          const keysWithNumbers = [];
-          for (const key in prefs) {
-            const val = prefs[key];
-            if (typeof val === "string" && /\d/.test(val) && !isColorCode(val)) keysWithNumbers.push(key);
-          }
-          if (!keysWithNumbers.length) return setHTML(warningDiv, "");
-
-          let html = `<h2 class="warning-title">Note</h2>`;
-          html += `<div class="warning-content"><div class="warning-description">Following settings might not work correctly, please double check after importing.</div>`;
-          html += `<ul class="warning-list">`;
-          for (const key of keysWithNumbers) {
-            const labelKey = stripThemeSuffix(key.replace(/^baseline-style@@/, ""));
-            const displayKey = labels[labelKey] || labelKey;
-            html += `<li class="warning-item">${displayKey}</li>`;
-          }
+          const keys = Object.keys(prefs).filter((k) => typeof prefs[k] === "string" && /\d/.test(prefs[k]) && !isColorCode(prefs[k]));
+          if (!keys.length) return setHTML(warningDiv);
+          let html = `<h2 class="warning-title">Note</h2><div class="warning-content"><div class="warning-description">Following settings might not work correctly, please double check after importing.</div><ul class="warning-list">`;
+          keys.forEach((k) => {
+            const lab = labels[stripThemeSuffix(k.replace(/^baseline-style@@/, ""))] || stripThemeSuffix(k);
+            html += `<li class="warning-item">${lab}</li>`;
+          });
           html += `</ul></div>`;
           setHTML(warningDiv, html);
-        }
+        };
 
         let conflictListenerSetup = false;
-        async function renderConflicts(conflicts, prefs) {
+        const renderConflicts = async (conflicts, prefs) => {
           const labels = (await getBaselineLabels().catch(() => ({}))) || {};
-          if (!Object.keys(conflicts).length) return setHTML(conflictDiv, "");
-
+          if (!Object.keys(conflicts).length) return setHTML(conflictDiv);
           let html = `<h2>Conflicts</h2>`;
           for (const key in conflicts) {
-            const strippedKey = key.replace(/^baseline-style@@/, "");
-            const labelKey = stripThemeSuffix(strippedKey);
-            const themeType = strippedKey.includes("@@light") ? "Light Theme" : strippedKey.includes("@@dark") ? "Dark Theme" : "";
-            const displayKey = labels[labelKey] || labelKey;
-            html += `<div class="conflict-item"><div class="conflict-key">${displayKey}</div>`;
+            const stripped = key.replace(/^baseline-style@@/, "");
+            const labelKey = stripThemeSuffix(stripped);
+            const themeType = stripped.includes("@@light") ? "Light Theme" : stripped.includes("@@dark") ? "Dark Theme" : "";
+            const display = labels[labelKey] || labelKey;
+            html += `<div class="conflict-item"><div class="conflict-key">${display}</div>`;
             if (themeType) html += `<div class="conflict-theme">${themeType}</div>`;
             html += `<div class="conflict-actions">`;
             conflicts[key].forEach((val, idx) => {
               const valueLabel = labels[val] || val;
-              html += `<label data-conflict-key="${key}" data-conflict-value="${val}" class="conflict-label${idx === 0 ? " selected" : ""}">`;
-              html += `${valueLabel}`;
-              if (isHexColor6(val)) html += `<span class="color-preview" style="background-color: ${val};"></span>`;
-              html += `</label>`;
+              html += `<label data-conflict-key="${key}" data-conflict-value="${val}" class="conflict-label${idx === 0 ? " selected" : ""}">` + valueLabel + (isHex6(val) ? `<span class="color-preview" style="background-color: ${val};"></span>` : "") + `</label>`;
             });
             html += `</div></div>`;
           }
           setHTML(conflictDiv, html);
-
-          // Event delegation for conflict selection (set up once)
           if (!conflictListenerSetup) {
             conflictDiv.addEventListener("click", (e) => {
               const label = e.target.closest?.(".conflict-label");
@@ -282,23 +230,21 @@ Supported themes:
               const key = label.dataset.conflictKey;
               conflictDiv.querySelectorAll(`[data-conflict-key='${key}']`).forEach((l) => l.classList.remove("selected"));
               label.classList.add("selected");
-
-              const selectedPrefs = { ...prefs };
+              const selected = { ...prefs };
               conflictDiv.querySelectorAll(".conflict-label.selected").forEach((sel) => {
-                const k = sel.dataset.conflictKey;
                 let v = sel.dataset.conflictValue;
                 if (v === "true") v = true;
                 else if (v === "false") v = false;
-                selectedPrefs[k] = v;
+                selected[sel.dataset.conflictKey] = v;
               });
-              updateOutput(selectedPrefs);
+              updateOutput(selected);
             });
             conflictListenerSetup = true;
           }
-        }
+        };
 
-        function renderUnsupported(unsupported, themeBases) {
-          if (!unsupported.length) return setHTML(unsupportedDiv, "");
+        const renderUnsupported = (unsupported, themeBases) => {
+          if (!unsupported.length) return setHTML(unsupportedDiv);
           let html = `<h2>Unsupported style settings</h2>`;
           const byTheme = groupBy(unsupported, (i) => i.theme || "unknown");
           for (const theme in byTheme) {
@@ -308,60 +254,52 @@ Supported themes:
             for (const cat in byCat) {
               const seen = new Set();
               html += `<div class="unsupported-category"><div class="unsupported-category-name">${cat}</div><ul class="unsupported-list">`;
-              for (const item of byCat[cat]) {
+              byCat[cat].forEach((item) => {
                 const stripped = item.name.replace(/@@(light|dark)$/i, "");
-                if (seen.has(stripped)) continue;
+                if (seen.has(stripped)) return;
                 seen.add(stripped);
                 html += `<li class="unsupported-item">${item.name}</li>`;
-              }
+              });
               html += `</ul></div>`;
             }
             html += `</div>`;
           }
           setHTML(unsupportedDiv, html);
-        }
+        };
 
-        function updateOutput(prefs) {
+        const updateOutput = (prefs) => {
           const str = Object.keys(prefs).length ? JSON.stringify(prefs, null, 2) : "";
-          newPrefsOutput.value = str;
+          prefsOutput.value = str;
           downloadBtn.href = "data:text/json;charset=utf-8," + encodeURIComponent(str);
-        }
+        };
 
-        async function showResults(prefs, unsupported, themeBases, conflicts) {
+        const showResults = async (prefs, unsupported, themeBases, conflicts) => {
           updateOutput(prefs);
           renderUnsupported(unsupported, themeBases);
           await renderWarnings(prefs);
           await renderConflicts(conflicts, prefs);
-        }
+        };
 
-        // UI actions
-        copyBtn.onclick = () => {
-          navigator.clipboard.writeText(newPrefsOutput.value).then(() => {
+        copyBtn.onclick = () =>
+          navigator.clipboard.writeText(prefsOutput.value).then(() => {
             copyBtn.innerHTML = "<span>Copied!</span>";
             setTimeout(() => (copyBtn.innerHTML = "<span>Copy</span>"), 1000);
-            if (typeof gtag === "function") {
-              gtag("event", "migration_copy");
-            }
+            if (typeof gtag === "function") gtag("event", "migration_copy");
           });
-        };
-        downloadBtn.onclick = function () {
-          if (typeof gtag === "function") {
-            gtag("event", "migration_download");
-          }
+        downloadBtn.onclick = () => {
+          if (typeof gtag === "function") gtag("event", "migration_download");
         };
         clearBtn.onclick = () => {
           prefsInput.value = "";
           showResults({}, [], {}, {});
         };
 
-        // Input parsing + migration
-        let lastInput = "";
+        let last = "";
         prefsInput.addEventListener("input", () => {
           const val = prefsInput.value;
-          if (val === lastInput) return;
-          lastInput = val;
+          if (val === last) return;
+          last = val;
           if (!val.trim()) return showResults({}, [], {}, {});
-
           getMapping()
             .then((mapping) => {
               let oldPrefs;
@@ -369,25 +307,20 @@ Supported themes:
                 oldPrefs = JSON.parse(val);
               } catch (e) {
                 showResults({}, [], {}, {});
-                newPrefsOutput.value = `Error parsing preferences: ${e.message}`;
+                prefsOutput.value = `Error parsing preferences: ${e.message}`;
                 return;
               }
-              const { newPrefs, unsupported, themeBases, conflicts } = migratePrefs(mapping, oldPrefs);
-              showResults(newPrefs, unsupported, themeBases, conflicts);
+              showResults(...Object.values(migratePrefs(mapping, oldPrefs)));
             })
             .catch((e) => {
               showResults({}, [], {}, {});
-              newPrefsOutput.value = `Error loading mapping file: ${e.message || e}`;
+              prefsOutput.value = `Error loading mapping file: ${e.message || e}`;
             });
         });
 
-        // Initial render
         showResults({}, [], {}, {});
       })();
     </script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script>
-      lucide.createIcons();
-    </script>
+    <script src="https://unpkg.com/lucide@latest" onload="lucide.createIcons()"></script>
   </body>
 </html>
