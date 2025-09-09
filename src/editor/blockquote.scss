@@ -12,103 +12,101 @@
     font-size: var(--blockquote-size);
   }
 
-  body:not(.blockquote-edge) {
-    .el-blockquote + .el-blockquote {
-      margin-top: 3em;
-    }
+  .markdown-rendered blockquote {
+    position: relative;
+    border-radius: var(--radius-s);
+    border-inline-start: none;
+    padding-inline: calc(32px + var(--blockquote-border-thickness)) 16px;
+    padding-block: 16px;
+  }
+  .markdown-rendered blockquote > blockquote {
+    padding-inline-start: calc(16px + var(--blockquote-border-thickness));
+    padding-block: 0 !important;
+  }
+  .markdown-rendered blockquote > blockquote::before {
+    top: 0;
+    bottom: 0;
+    inset-inline-start: 0;
+  }
 
-    .markdown-rendered blockquote {
-      padding-inline-start: 16px;
-      position: relative;
-      margin: 32px 16px;
-    }
-    .markdown-rendered blockquote::before {
-      border-width: 16px;
-      border-style: solid;
-      border-color: var(--blockquote-background-color);
-      inset: -16px -16px -16px calc(-16px - var(--blockquote-border-thickness));
-      content: "";
-      position: absolute;
-      border-radius: var(--radius-s);
-      pointer-events: none;
-    }
-    .markdown-rendered blockquote:has(p:dir(rtl))::before {
-      inset: -16px calc(-16px - var(--blockquote-border-thickness)) -16px -16px;
-    }
+  .markdown-rendered blockquote::before {
+    position: absolute;
+    top: 16px;
+    bottom: 16px;
+    inset-inline-start: 16px;
+    border-radius: var(--radius-s);
+    background-color: var(--blockquote-border-color);
+    width: var(--blockquote-border-thickness);
+    pointer-events: none;
+    content: "";
+  }
 
-    .HyperMD-quote {
-      background-color: var(--blockquote-background-color);
-      border: solid var(--blockquote-background-color);
-      border-width: 0 16px 0 16px;
+  .HyperMD-quote {
+    border: solid var(--blockquote-background-color);
+    border-width: 0 16px 0 16px;
+    background-color: var(--blockquote-background-color);
+    &::before {
+      width: 0;
     }
-    .HyperMD-quote:first-child,
-    .cm-line:not(.HyperMD-quote) + .HyperMD-quote {
-      border-top-width: 16px;
-      border-top-left-radius: var(--radius-s);
-      border-top-right-radius: var(--radius-s);
+  }
+  .HyperMD-quote:first-child,
+  .cm-line:not(.HyperMD-quote) + .HyperMD-quote {
+    border-top-width: 16px;
+    border-start-start-radius: var(--radius-s);
+    border-start-end-radius: var(--radius-s);
+    &::before {
+      border-start-start-radius: var(--radius-s);
+      border-start-end-radius: var(--radius-s);
     }
-    .HyperMD-quote:last-child,
-    .cm-line.HyperMD-quote:has(+ .cm-line:not(.HyperMD-quote)) {
-      border-bottom-width: 16px;
-      border-bottom-left-radius: var(--radius-s);
-      border-bottom-right-radius: var(--radius-s);
+  }
+  .HyperMD-quote:last-child,
+  .cm-line.HyperMD-quote:has(+ .cm-line:not(.HyperMD-quote)) {
+    border-bottom-width: 16px;
+    border-end-start-radius: var(--radius-s);
+    border-end-end-radius: var(--radius-s);
+    &::before {
+      border-end-start-radius: var(--radius-s);
+      border-end-end-radius: var(--radius-s);
     }
   }
 
   // Blockquote: Edge
   body.blockquote-edge {
     .markdown-rendered blockquote {
-      border-inline-start: none;
-      position: relative;
-      padding-top: 12px;
-      padding-bottom: 12px;
       border-radius: calc(var(--blockquote-border-thickness) / 2) var(--radius-s) var(--radius-s) calc(var(--blockquote-border-thickness) / 2);
-      padding-inline-start: calc(var(--blockquote-border-thickness) + 16px);
-      padding-inline-end: 16px;
+      padding-inline: calc(var(--blockquote-border-thickness) + 16px) 16px;
+      padding-block: 12px;
     }
     .markdown-rendered blockquote::before {
-      background: var(--blockquote-border-color);
-      width: var(--blockquote-border-thickness);
-      inset-inline-start: 0;
       top: 0;
       bottom: 0;
-      content: "";
-      border-radius: var(--radius-s);
-      position: absolute;
-      pointer-events: none;
+      inset-inline-start: 0;
     }
 
-    .markdown-source-view.mod-cm6 .HyperMD-quote {
-      padding-top: 12px;
-      padding-bottom: 12px;
-      text-indent: 0 !important;
-      padding-inline-start: 10px;
-      padding-inline-end: 16px;
-
-      &:not(.cm-active) {
-        padding-inline-start: 24px;
-
-        .cm-formatting {
-          display: none;
-        }
-      }
+    .HyperMD-quote {
+      border-width: 0;
     }
-    .markdown-source-view.mod-cm6 .HyperMD-quote:before,
-    .markdown-source-view.mod-cm6 .cm-blockquote-border:before {
-      background: var(--blockquote-border-color);
-      width: var(--blockquote-border-thickness) !important;
-      border-radius: var(--radius-s);
-      border-inline-start: none !important;
+    .HyperMD-quote:first-child,
+    .cm-line:not(.HyperMD-quote) + .HyperMD-quote {
+      border-top-width: 0;
+      border-start-start-radius: calc(var(--blockquote-border-thickness) / 2);
+      padding-top: 8px;
+    }
+    .HyperMD-quote:last-child,
+    .cm-line.HyperMD-quote:has(+ .cm-line:not(.HyperMD-quote)) {
+      border-bottom-width: 0;
+      border-end-start-radius: calc(var(--blockquote-border-thickness) / 2);
+      padding-bottom: 8px;
     }
   }
 
   // Citation
   cite {
-    font-style: normal;
-    color: var(--text-muted);
-    font-size: var(--font-smaller);
-    text-align: right;
     display: inline-block;
     width: 100%;
+    color: var(--text-muted);
+    font-style: normal;
+    font-size: var(--font-smaller);
+    text-align: right;
   }
 }
