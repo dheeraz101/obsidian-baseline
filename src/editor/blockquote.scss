@@ -46,11 +46,11 @@
     border-width: 0 16px 0 16px;
     background-color: var(--blockquote-background-color);
     &::before {
-      width: 0;
+      width: 0 !important;
     }
   }
   .HyperMD-quote:first-child,
-  .cm-line:not(.HyperMD-quote) + .HyperMD-quote {
+  .cm-sizer > div > div > *:not(.HyperMD-quote) + .HyperMD-quote {
     border-top-width: 16px;
     border-start-start-radius: var(--radius-s);
     border-start-end-radius: var(--radius-s);
@@ -60,7 +60,7 @@
     }
   }
   .HyperMD-quote:last-child,
-  .cm-line.HyperMD-quote:has(+ .cm-line:not(.HyperMD-quote)) {
+  .cm-sizer > div > div > .HyperMD-quote:has(+ *:not(.HyperMD-quote)) {
     border-bottom-width: 16px;
     border-end-start-radius: var(--radius-s);
     border-end-end-radius: var(--radius-s);
