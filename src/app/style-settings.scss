@@ -1318,20 +1318,20 @@ settings:
 		description: Default width for image blocks
 		type: class-select
 		allowEmpty: false
-		default: image-default-width
+		default: img-default-width
 		options:
 			-
 				label: Default
-				value: image-default-width
+				value: img-default-width
 			-
 				label: Wide line width
-				value: image-wide
+				value: img-wide
 			-
 				label: Maximum line width
-				value: image-max
+				value: img-max
 			-
 				label: 100% pane width
-				value: image-100
+				value: img-100
 	-
 		id: map-width
 		title: Map width

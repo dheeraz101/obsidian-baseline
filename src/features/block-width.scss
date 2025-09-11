@@ -26,6 +26,15 @@ body:not(.block-width-off) {
       padding: var(--file-margins) 0;
     }
   }
+  &.is-mobile:is(.table-100, .img-100, .iframe-100, .map-100, .chart-100, .bases-100),
+  &.is-mobile div:is(.table-100, .img-100, .iframe-100, .map-100, .chart-100, .bases-100) {
+    --file-margins: 24px;
+
+    &.markdown-preview-view,
+    .markdown-preview-view {
+      padding: 8px 0;
+    }
+  }
 
   // Fix content centering
   .markdown-preview-sizer > div {
@@ -93,6 +102,10 @@ body:not(.block-width-off) div:is(.table-wide, .table-max, .table-100) {
 }
 .img-100 {
   --img-line-width: 100%;
+
+  .markdown-preview-sizer img {
+    border-radius: 0 !important;
+  }
 }
 body:not(.block-width-off):is(.img-wide, .img-max, .img-100),
 body:not(.block-width-off) div:is(.img-wide, .img-max, .img-100) {
