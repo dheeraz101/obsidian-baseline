@@ -1,3 +1,17 @@
+body:not(.layout-cards, .layout-border, .layout-macos) {
+  --ribbon-padding: 8px 0 12px 8px;
+
+  &.show-ribbon .mod-sidedock.mod-left-split {
+    .mod-top-left-space .workspace-tab-header-container {
+      padding-left: 0;
+    }
+    .workspace-leaf-content > .node-insert-event,
+    .workspace-leaf-content > .view-content {
+      padding-left: 8px;
+    }
+  }
+}
+
 body.layout-classic:not(.is-mobile) {
   &:not(.colorful-frame) {
     --tab-outline-width: var(--border-width);
@@ -36,6 +50,9 @@ body.layout-classic:not(.is-mobile) {
         inset: auto -100vw -8px;
       }
     }
+  }
+  .workspace-ribbon.mod-left {
+    padding-top: calc(var(--header-height) + 8px);
   }
   .mod-sidedock {
     & > .workspace-leaf-resize-handle {
@@ -325,14 +342,41 @@ body.layout-frame:not(.is-mobile) {
     }
   }
 
-  // Ribbon
-  &.mod-macos .workspace-ribbon {
-    --ribbon-width: calc(var(--header-height) + 28px);
+  // Side panels
+  &:not(.stacked-nav-off) .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container {
+    gap: 0;
+  }
+  &.stacked-nav-off .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container {
+    padding-left: calc(var(--frame-left-space) - 8px);
   }
 
-  // Side panels
-  &.show-ribbon.stacked-nav-off .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container {
-    padding-left: 0;
+  &.show-ribbon {
+    --ribbon-width: calc(var(--header-height) - 8px);
+
+    &:not(.mod-macos) {
+      .stacked-nav-off .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container {
+        padding-left: 8px;
+      }
+      .workspace-ribbon .sidebar-toggle-button {
+        padding-left: 8px;
+      }
+    }
+    &.mod-macos .workspace-ribbon.mod-left {
+      padding-top: calc(var(--header-height) - 8px);
+    }
+
+    .workspace-ribbon {
+      margin-right: 0;
+      border-right: 0;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    .mod-sidedock.mod-left-split {
+      margin-left: 0;
+      border-left: 0;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
   }
 
   // Editor panel
