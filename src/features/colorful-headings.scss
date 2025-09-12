@@ -68,6 +68,9 @@
     .collapse-indicator.heading-collapse-indicator {
       margin-left: -48px;
     }
+    &.is-phone .collapse-indicator.heading-collapse-indicator {
+      margin-left: -36px;
+    }
     .collapse-indicator {
       margin-left: -32px;
     }
