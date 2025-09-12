@@ -54,3 +54,15 @@ body:not(.is-mobile) .view-content.notebook-navigator {
     margin-bottom: 48px;
   }
 }
+
+// Hider https://github.com/kepano/obsidian-hider
+.hider-sidebar-buttons.mod-macos {
+  --frame-left-space: calc(80px - var(--ribbon-width));
+}
+.hider-sidebar-buttons .sidebar-toggle-button.mod-right,
+.hider-sidebar-buttons .sidebar-toggle-button.mod-left {
+  display: flex;
+  visibility: hidden;
+  width: 0;
+  opacity: 0;
+}
