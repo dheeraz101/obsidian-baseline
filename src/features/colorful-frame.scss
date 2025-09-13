@@ -1,5 +1,12 @@
 body.colorful-frame:not(.is-mobile) {
-  &:not(.stacked-nav-off) .mod-top-left-space .workspace-tab-header-container-inner {
+  --titlebar-text-color: var(--text-on-accent);
+  --titlebar-text-color-focused: var(--text-on-accent);
+
+  &.is-frameless:not(.is-hidden-frameless, .is-fullscreen) .titlebar {
+    background-color: var(--color-accent);
+  }
+
+  &:not(.stacked-nav-off) .mod-sidedock .mod-top-left-space .workspace-tab-header-container-inner {
     padding-top: 8px;
   }
   &.layout-cupertino .workspace-tab-header-container::before {

@@ -224,7 +224,7 @@ body .mod-sidedock .workspace-tabs.mod-top-right-space .workspace-tab-header-con
   padding-right: var(--frame-right-space);
 }
 
-body.mod-macos.is-hidden-frameless:not(.is-popout-window) .workspace {
+body.mod-macos.is-frameless:not(.is-popout-window) .workspace {
   .workspace-tabs.mod-top-right-space .workspace-tab-header-container {
     padding-right: 8px;
   }

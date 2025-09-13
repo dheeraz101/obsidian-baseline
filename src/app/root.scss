@@ -107,14 +107,16 @@ body:not(.accented-interface) {
   --text-on-accent-inverted: var(--color-base-00);
 }
 
+body.is-frameless:not(.is-hidden-frameless, .is-fullscreen) .titlebar {
+  background-color: var(--background-secondary);
+}
 body.window-title-off .titlebar-text {
   display: none;
+}
+.titlebar .titlebar-text {
+  opacity: 1;
 }
 
 * {
   -electron-corner-smoothing: 60%;
-}
-
-body.is-frameless:not(.is-hidden-frameless, .is-fullscreen) .titlebar {
-  background-color: var(--background-secondary);
 }

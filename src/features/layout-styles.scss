@@ -296,6 +296,16 @@ body.layout-border.is-translucent:not(.is-fullscreen):not(.is-mobile) {
 }
 
 body.layout-frame:not(.is-mobile) {
+  &.is-frameless:not(.is-hidden-frameless) {
+    .workspace {
+      padding-top: 0;
+    }
+    .workspace-ribbon,
+    .workspace-split {
+      margin-top: 0;
+    }
+  }
+
   .workspace {
     padding: 4px;
     background-color: var(--background-secondary);
@@ -468,6 +478,15 @@ body.layout-macos:not(.is-mobile) {
     background-color: transparent;
   }
 
+  &.is-frameless:not(.is-hidden-frameless) {
+    .titlebar {
+      background-color: var(--background-primary);
+    }
+    .mod-sidedock.mod-right-split > .workspace-leaf-resize-handle {
+      top: 0;
+    }
+  }
+
   &.is-translucent .mod-root {
     background-color: var(--background-primary) !important;
   }
@@ -478,9 +497,18 @@ body.layout-macos:not(.is-mobile) {
     }
   }
 
-  &:not(.is-focused) .mod-sidedock {
-    background-color: var(--color-base-20) !important;
-    box-shadow: none !important;
+  &:not(.is-focused) {
+    --workspace-background-translucent: var(--background-secondary);
+
+    .workspace-ribbon,
+    .mod-sidedock > div,
+    .mod-root .workspace-tab-header-container {
+      opacity: 0.5;
+    }
+    .mod-sidedock {
+      background-color: var(--color-base-20) !important;
+      box-shadow: none !important;
+    }
   }
   &:not(.is-translucent) .mod-sidedock {
     background-color: color-mix(in srgb, var(--background-primary) 98%, var(--color-accent));
@@ -491,7 +519,7 @@ body.layout-macos:not(.is-mobile) {
   }
   &.theme-light .mod-sidedock.mod-left-split {
     outline: var(--border-width) solid white;
-    box-shadow: 0 0 16px rgba(0, 0, 0, 0.05), 0 4px 32px rgba(0, 0, 0, 0.05), -32px 0px 0 32px var(--background-primary);
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.05), 0 4px 32px rgba(0, 0, 0, 0.05), -64px 0px 0 64px var(--background-primary);
   }
   &.theme-dark .mod-sidedock.mod-left-split {
     outline: var(--border-width) solid var(--background-modifier-border);
