@@ -10,16 +10,19 @@ Baseline sets a new standard for your Obsidian vault experience — sleek, famil
 
 And don’t forget to [support the amazing creators](#credits) whose work helped shape Baseline.
 
-## Coming from other themes?
+## Quick Start
 
-Baseline is designed to be a drop-in replacement for your favorite themes. To make your transition seamless, use [Style Settings Migration Tool](https://aaaaalexis.github.io/obsidian-baseline/) to import your settings from following supported themes:
+### Migrate from other themes
 
-- [Minimal](https://github.com/kepano/obsidian-minimal/) by kepano
-- [AnuPpuccin](https://github.com/AnubisNekhet/AnuPpuccin/) by AnubisNekhet
-- [Things 2](https://github.com/colineckert/obsidian-things/) by colineckert
-- [Border](https://github.com/Akifyss/obsidian-border/) by Akifyss
-- [Sanctum](https://github.com/jdanielmourao/obsidian-sanctum/) by jdanielmourao
-- ...with more to come.
+Seamlessly migrate your settings from Minimal, AnuPpuccin, Things 2, Border, Sanctum.
+
+Get started with [Style Settings Migration Tool ↗](https://aaaaalexis.github.io/obsidian-baseline/migration)
+
+### Start with style presets
+
+Discover and share Style Settings presets created by the community. Marketplace is your new home for finding the perfect look for your workspace.
+
+Check out [Baseline Marketplace ↗](<(https://aaaaalexis.github.io/obsidian-baseline/marketplace)>)
 
 ## Overview
 
@@ -57,7 +60,7 @@ Baseline delivers a clean, modern, and polished foundation right out of the box,
 
 ### A love letter to the community
 
-Baseline aspires to stand among the community’s leading themes, alongside Minimal, AnuPpuccin, ITS, and others. Shaped by the community, Baseline gives back through a rich collection of innovations: polished interface, compact elements, hover sidebars, with more to come. With a fully reimagined Obsidian interface, Baseline aims to be more than just a theme, but a fresh starting point, a new baseline for the community going forward.
+Shaped by the community, Baseline gives back through a rich collection of innovations: polished interface, compact elements, hover sidebars, with more to come. Baseline aims to be more than just a theme, but a fresh starting point, a new baseline for the community going forward.
 
 ## Credits
 
