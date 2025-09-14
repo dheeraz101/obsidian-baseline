@@ -1,11 +1,11 @@
 /* Sky color scheme, inspired by Notion */
 
-.theme-light.notion-light.color-scheme-accent {
+.theme-light.sky-light.color-scheme-accent {
   --accent-h: 197;
   --accent-s: 71%;
   --accent-l: 52%;
 }
-.theme-light.notion-light {
+.theme-light.sky-light {
   --background-primary-alt: #f7f6f4;
   --background-secondary: #f7f6f4;
   --interactive-normal: #e8e7e4;
@@ -21,19 +21,19 @@
   --text-selection: rgba(131, 201, 229, 0.3);
 }
 
-.theme-dark.notion-dark.color-scheme-accent {
+.theme-dark.sky-dark.color-scheme-accent {
   --accent-h: 197;
   --accent-s: 71%;
   --accent-l: 52%;
 }
-.theme-dark.notion-dark,
-.theme-light.notion-light.contrast-light-vivid .titlebar,
-.theme-light.notion-light.contrast-light-vivid .status-bar,
-.theme-light.notion-light.contrast-light-vivid .workspace::before,
-.theme-light.notion-light.contrast-light-vivid .workspace-ribbon,
-.theme-light.notion-light.contrast-light-vivid .mod-sidedock,
-.theme-light.notion-light.contrast-light-vivid .mod-root .workspace-tab-header-container,
-.theme-light.notion-light.contrast-light-vivid .mod-root .workspace-tab-header-container::before {
+.theme-dark.sky-dark,
+.theme-light.sky-light.contrast-light-vivid .titlebar,
+.theme-light.sky-light.contrast-light-vivid .status-bar,
+.theme-light.sky-light.contrast-light-vivid .workspace::before,
+.theme-light.sky-light.contrast-light-vivid .workspace-ribbon,
+.theme-light.sky-light.contrast-light-vivid .mod-sidedock,
+.theme-light.sky-light.contrast-light-vivid .mod-root .workspace-tab-header-container,
+.theme-light.sky-light.contrast-light-vivid .mod-root .workspace-tab-header-container::before {
   --background-primary: #2f3437;
   --background-primary-alt: #373c3f;
   --background-secondary: #373c3f;
@@ -49,7 +49,7 @@
 
   --text-selection: rgba(57, 134, 164, 0.3);
 }
-.theme-dark.notion-dark.contrast-dark-black {
+.theme-dark.sky-dark.contrast-dark-black {
   --interactive-normal: #232729;
   --background-modifier-border: #2f3437;
 }
