@@ -13,6 +13,9 @@
   font: inherit;
   background-color: var(--background-primary);
 }
+.link-panel button:hover {
+  background-color: var(--background-modifier-hover);
+}
 .link-panel button svg {
   width: 1.602em;
   height: 1.602em;
