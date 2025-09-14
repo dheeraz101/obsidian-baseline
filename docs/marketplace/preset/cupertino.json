@@ -1,7 +1,7 @@
 {
   "baseline-style@@accented-interface": true,
   "baseline-style@@color-scheme-light": "default-light",
-  "baseline-style@@font-interface-override": "SF Pro Text, system-ui",
+  "baseline-style@@font-interface-override": "SF Pro, system-ui",
   "baseline-style@@layout-style": "layout-cupertino",
   "baseline-style@@input-style": "input-cupertino",
   "baseline-style@@status-bar-style": "status-bar-cupertino",
@@ -10,7 +10,7 @@
   "baseline-style@@stacked-nav-off": true,
   "baseline-style@@compact-tabs-off": true,
   "baseline-style@@nav-item-active-style": "nav-item-subtle",
-  "baseline-style@@font-text-override": "SF Pro Text, system-ui",
+  "baseline-style@@font-text-override": "SF Pro, system-ui",
   "baseline-style@@file-header-visibility": "view-header-title-always",
   "baseline-style@@h1-size": "1.5em",
   "baseline-style@@h2-size": "1.25em",

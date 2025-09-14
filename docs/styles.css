@@ -11,6 +11,7 @@
 .link-panel button {
   height: 480px;
   font: inherit;
+  background-color: var(--background-primary);
 }
 .link-panel button svg {
   width: 1.602em;
