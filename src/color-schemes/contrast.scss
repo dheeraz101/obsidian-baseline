@@ -57,6 +57,11 @@ body.theme-light.contrast-light-vivid {
     --nav-item-color-active: var(--text-on-accent);
   }
 
+  --graph-text: var(--color-base-20) !important;
+  --graph-line: var(--color-base-70) !important;
+  --graph-node: var(--color-base-50) !important;
+  --graph-node-unresolved: var(--color-base-70) !important;
+
   .titlebar,
   .status-bar,
   .workspace::before,
@@ -68,11 +73,6 @@ body.theme-light.contrast-light-vivid {
     --collapse-icon-color-collapsed: var(--text-accent);
     --divider-color: var(--background-modifier-border);
     --divider-color-hover: var(--interactive-accent);
-    --graph-text: var(--text-normal);
-    --graph-line: var(--color-base-35, var(--background-modifier-border-focus));
-    --graph-node: var(--text-muted);
-    --graph-node-unresolved: var(--text-faint);
-    --graph-node-focused: var(--text-accent);
     --heading-formatting: var(--text-faint);
     --hr-color: var(--background-modifier-border);
     --icon-color: var(--text-muted);
