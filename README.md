@@ -14,15 +14,15 @@ And don’t forget to [support the amazing creators](#credits) whose work helped
 
 ### Migrate from other themes
 
-Seamlessly migrate your settings from Minimal, AnuPpuccin, Things 2, Border, Sanctum.
+Seamlessly migrate your existing Style Settings from supported themes.
 
-Get started with [Style Settings Migration Tool ↗](https://aaaaalexis.github.io/obsidian-baseline/migration)
+**Get started with [Style Settings Migration Tool ↗](https://aaaaalexis.github.io/obsidian-baseline/migration)**
 
 ### Start with style presets
 
-Discover and share Style Settings presets created by the community. Marketplace is your new home for finding the perfect look for your workspace.
+Discover and share Style Settings presets in Baseline Marketplace.
 
-Check out [Baseline Marketplace ↗](<(https://aaaaalexis.github.io/obsidian-baseline/marketplace)>)
+**Check out [Baseline Marketplace ↗](https://aaaaalexis.github.io/obsidian-baseline/marketplace)**
 
 ## Overview
 
