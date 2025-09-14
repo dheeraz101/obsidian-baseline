@@ -5,12 +5,25 @@ name: Baseline
 id: baseline-style
 settings:
 	-
-		id: instructions
-		title: Coming from other themes?
+		id: info
+		title: Get started
+		type: heading
+		level: 1
+		collapsed: false
+	-
+		id: migrate
+		title: Migrate from other themes
 		type: info-text
 		level: 1
 		markdown: true
-		description: Easily migrate your settings with [Style Settings migration tool](https://aaaaalexis.github.io/obsidian-baseline/). Currently supporting **Minimal**, **AnuPpuccin**, **Border**, **Sanctum**, and **Things 2**
+		description: Seamlessly **migrate your existing Style Settings** from supported themes. ↗[](https://aaaaalexis.github.io/obsidian-baseline/migration/)
+	-
+		id: marketplace
+		title: Community style presets
+		type: info-text
+		level: 1
+		markdown: true
+		description: Discover and share Style Settings presets in **Baseline Marketplace**. ↗[](https://aaaaalexis.github.io/obsidian-baseline/marketplace/)
 	-
 		id: missing-font
 		title: Extended language support
@@ -21,11 +34,12 @@ settings:
 		type: info-text
 		level: 1
 		markdown: true
-		description: If your headings appear with missing characters, [download the extended font](https://github.com/aaaaalexis/obsidian-baseline/blob/main/snippets/baseline-extension-font.css) and install it as a CSS snippet
-		description.zh-TW: 如果標題出現字型缺漏，[請點此下載擴充字型](https://github.com/aaaaalexis/obsidian-baseline/blob/main/snippets/baseline-extension-font.css)，並安裝為 CSS 片段
-		description.zh: 如果标题出现字体缺失，[请点击此处下载扩展字体](https://github.com/aaaaalexis/obsidian-baseline/blob/main/snippets/baseline-extension-font-cn.css)，并安装为 CSS 代码片段
-		description.jp: 見出しに文字化けやフォントの欠落がある場合は、[こちらから拡張フォントをダウンロード](https://github.com/aaaaalexis/obsidian-baseline/blob/main/snippets/baseline-extension-font-jp.css)し、CSSスニペットとしてインストールしてください
-		description.ru: Если в заголовках не отображаются некоторые символы, [скачайте расширенный шрифт здесь](https://github.com/aaaaalexis/obsidian-baseline/blob/main/snippets/baseline-extension-font.css) и установите его в виде CSS-фрагмента
+		description: Heading font missing glyphs? Download the **extended font CSS snippet**. ↗[](https://github.com/aaaaalexis/obsidian-baseline/blob/main/snippets/baseline-extension-font.css)
+		description.zh-TW: 標題出現缺字？請點此下載擴充字型 CSS 片段。[](https://github.com/aaaaalexis/obsidian-baseline/blob/main/snippets/baseline-extension-font.css)
+		description.zh: 标题字体缺字？请下载**扩展字体 CSS 代码片段**[](https://github.com/aaaaalexis/obsidian-baseline/blob/main/snippets/baseline-extension-font-cn.css)
+		description.jp: 見出しフォントが文字化け？拡張フォントCSSスニペットをダウンロード。[](https://github.com/aaaaalexis/obsidian-baseline/blob/main/snippets/baseline-extension-font-jp.css)
+		description.ru: Проблемы со шрифтом заголовков? Скачайте CSS с расширенным шрифтом.[](https://github.com/aaaaalexis/obsidian-baseline/blob/main/snippets/baseline-extension-font.css)
+
 	-
 		id: colors
 		title: Colors
@@ -501,7 +515,7 @@ settings:
 		collapsed: true
 	-
 		id: code-comment
-		title: "Syntax: comments"
+		title: 'Syntax: comments'
 		description: Syntax highlighting for comments
 		type: variable-themed-color
 		format: hex
@@ -509,7 +523,7 @@ settings:
 		default-dark: '#'
 	-
 		id: code-function
-		title: "Syntax: functions"
+		title: 'Syntax: functions'
 		description: Syntax highlighting for functions
 		type: variable-themed-color
 		format: hex
@@ -517,7 +531,7 @@ settings:
 		default-dark: '#'
 	-
 		id: code-keyword
-		title: "Syntax: keywords"
+		title: 'Syntax: keywords'
 		description: Syntax highlighting for keywords
 		type: variable-themed-color
 		format: hex
@@ -525,7 +539,7 @@ settings:
 		default-dark: '#'
 	-
 		id: code-important
-		title: "Syntax: important"
+		title: 'Syntax: important'
 		description: Syntax highlighting for important text
 		type: variable-themed-color
 		format: hex
@@ -533,7 +547,7 @@ settings:
 		default-dark: '#'
 	-
 		id: code-operator
-		title: "Syntax: operators"
+		title: 'Syntax: operators'
 		description: Syntax highlighting for operators
 		type: variable-themed-color
 		format: hex
@@ -541,7 +555,7 @@ settings:
 		default-dark: '#'
 	-
 		id: code-property
-		title: "Syntax: properties"
+		title: 'Syntax: properties'
 		description: Syntax highlighting for properties
 		type: variable-themed-color
 		format: hex
@@ -549,7 +563,7 @@ settings:
 		default-dark: '#'
 	-
 		id: code-punctuation
-		title: "Syntax: punctuation"
+		title: 'Syntax: punctuation'
 		description: Syntax highlighting for punctuation
 		type: variable-themed-color
 		format: hex
@@ -557,7 +571,7 @@ settings:
 		default-dark: '#'
 	-
 		id: code-string
-		title: "Syntax: strings"
+		title: 'Syntax: strings'
 		description: Syntax highlighting for strings
 		type: variable-themed-color
 		format: hex
@@ -565,7 +579,7 @@ settings:
 		default-dark: '#'
 	-
 		id: code-tag
-		title: "Syntax: tags"
+		title: 'Syntax: tags'
 		description: Syntax highlighting for tags
 		type: variable-themed-color
 		format: hex
@@ -573,7 +587,7 @@ settings:
 		default-dark: '#'
 	-
 		id: code-value
-		title: "Syntax: values"
+		title: 'Syntax: values'
 		description: Syntax highlighting for values
 		type: variable-themed-color
 		format: hex
@@ -590,7 +604,7 @@ settings:
 		title: Interface font
 		description: Name of the font as it appears on your system
 		type: variable-text
-		default: 'Inter'
+		default: ''
 	-
 		id: density-modifier
 		title: Density
@@ -1084,7 +1098,7 @@ settings:
 		title: Editor font
 		description: Name of the font as it appears on your system
 		type: variable-text
-		default: 'Inter'
+		default: ''
 	-
 		id: font-monospace-override
 		title: Monospace font
@@ -1431,7 +1445,7 @@ settings:
 		title: Inline title font
 		description: Name of the font as it appears on your system
 		type: variable-text
-		default: 'InstrumentSerif'
+		default: ''
 	-
 		id: inline-title-size
 		title: Inline title font size
@@ -1496,7 +1510,7 @@ settings:
 		title: H1 font
 		description: Name of the font as it appears on your system
 		type: variable-text
-		default: 'InstrumentSerif'
+		default: ''
 	-
 		id: h1-size
 		title: H1 font size
@@ -1507,7 +1521,7 @@ settings:
 		id: h1-weight
 		title: H1 font weight
 		type: variable-number-slider
-		default: 400
+		default: 700
 		min: 100
 		max: 900
 		step: 100
@@ -1583,7 +1597,7 @@ settings:
 		title: H2 font
 		description: Name of the font as it appears on your system
 		type: variable-text
-		default: 'InstrumentSerif'
+		default: ''
 	-
 		id: h2-size
 		title: H2 font size
@@ -1594,7 +1608,7 @@ settings:
 		id: h2-weight
 		title: H2 font weight
 		type: variable-number-slider
-		default: 400
+		default: 600
 		min: 100
 		max: 900
 		step: 100
@@ -1670,7 +1684,7 @@ settings:
 		title: H3 font
 		description: Name of the font as it appears on your system
 		type: variable-text
-		default: 'InstrumentSerif'
+		default: ''
 	-
 		id: h3-size
 		title: H3 font size
@@ -1681,7 +1695,7 @@ settings:
 		id: h3-weight
 		title: H3 font weight
 		type: variable-number-slider
-		default: 400
+		default: 600
 		min: 100
 		max: 900
 		step: 100
@@ -1757,7 +1771,7 @@ settings:
 		title: H4 font
 		description: Name of the font as it appears on your system
 		type: variable-text
-		default: 'InstrumentSerif'
+		default: ''
 	-
 		id: h4-size
 		title: H4 font size
@@ -1768,7 +1782,7 @@ settings:
 		id: h4-weight
 		title: H4 font weight
 		type: variable-number-slider
-		default: 400
+		default: 600
 		min: 100
 		max: 900
 		step: 100
@@ -1777,7 +1791,7 @@ settings:
 		title: H4 font variant
 		type: variable-select
 		allowEmpty: false
-		default: small-caps
+		default: normal
 		options:
 			-
 				label: Normal
@@ -1844,7 +1858,7 @@ settings:
 		title: H5 font
 		description: Name of the font as it appears on your system
 		type: variable-text
-		default: 'InstrumentSerif'
+		default: ''
 	- 
 		id: h5-size
 		title: H5 font size
@@ -1855,7 +1869,7 @@ settings:
 		id: h5-weight
 		title: H5 font weight
 		type: variable-number-slider
-		default: 400
+		default: 600
 		min: 100
 		max: 900
 		step: 100
@@ -1864,7 +1878,7 @@ settings:
 		title: H5 font variant
 		type: variable-select
 		allowEmpty: false
-		default: small-caps
+		default: normal
 		options:
 			-
 				label: Normal
@@ -1931,7 +1945,7 @@ settings:
 		title: H6 font
 		description: Name of the font as it appears on your system
 		type: variable-text
-		default: 'InstrumentSerif'
+		default: ''
 	-
 		id: h6-size
 		title: H6 font size
@@ -1942,7 +1956,7 @@ settings:
 		id: h6-weight
 		title: H6 font weight
 		type: variable-number-slider
-		default: 400
+		default: 600
 		min: 100
 		max: 900
 		step: 100
@@ -1951,7 +1965,7 @@ settings:
 		title: H6 font variant
 		type: variable-select
 		allowEmpty: false
-		default: small-caps
+		default: normal
 		options:
 			-
 				label: Normal
@@ -2173,6 +2187,7 @@ settings:
 		id: blockquote-background-color
 		title: Blockquote background color
 		type: variable-themed-color
+		opacity: true
 		format: hex
 		default-light: '#'
 		default-dark: '#'
@@ -2180,6 +2195,7 @@ settings:
 		id: blockquote-border-color
 		title: Blockquote border color
 		type: variable-themed-color
+		opacity: true
 		format: hex
 		default-light: '#'
 		default-dark: '#'
@@ -2835,6 +2851,10 @@ settings:
 
 */
 
+.vertical-tab-content > div > .setting-item-heading:not(.is-collapsed) {
+  border-bottom: 0;
+}
+
 .style-settings-container .themed-color-wrapper > div {
   background-color: transparent;
   color: var(--color-base-100);
@@ -2903,8 +2923,8 @@ body.everforest-dark .style-settings-container .setting-item[data-id="color-sche
 }
 body.flexoki-light .style-settings-container .setting-item[data-id="color-scheme-light"] .setting-item-control::before,
 body.flexoki-dark .style-settings-container .setting-item[data-id="color-scheme-dark"] .setting-item-control::before,
-body.notion-light .style-settings-container .setting-item[data-id="color-scheme-light"] .setting-item-control::before,
-body.notion-dark .style-settings-container .setting-item[data-id="color-scheme-dark"] .setting-item-control::before {
+body.sky-light .style-settings-container .setting-item[data-id="color-scheme-light"] .setting-item-control::before,
+body.sky-dark .style-settings-container .setting-item[data-id="color-scheme-dark"] .setting-item-control::before {
   content: "Author: Steph Ango (kepano)";
 }
 body.gruvbox-light .style-settings-container .setting-item[data-id="color-scheme-light"] .setting-item-control::before,
@@ -2950,6 +2970,7 @@ body.layout-frame .style-settings-container .setting-item[data-id="layout-style"
 }
 
 // Disabling input
+body:not(.accented-interface) .style-settings-container .setting-item[data-id="color-scheme-accent"],
 body:not(.hover-sidedock) .style-settings-container .setting-item[data-id="hover-sidedock"] ~ .setting-item,
 body:not(.readable-spacing) .style-settings-container .setting-item[data-id="readable-spacing"] ~ .setting-item,
 body.view-header-title-hidden .style-settings-container .setting-item[data-id="file-header-visibility"] ~ .setting-item,
@@ -2958,4 +2979,76 @@ body.metadata-cupertino .style-settings-container .setting-item[data-id="metadat
 body.unstyled-tags .style-settings-container .setting-item[data-id="unstyled-tags"] ~ .setting-item {
   opacity: 0.4;
   pointer-events: none;
+}
+
+// Get started
+body .style-settings-container .setting-item-heading[data-id="info"] {
+  display: none;
+
+  + .style-settings-container {
+    padding-left: 0;
+    padding-bottom: 0;
+    gap: 4px;
+    display: flex;
+    flex-wrap: wrap;
+
+    .setting-item {
+      flex: 1;
+      border-radius: var(--radius-m);
+      border: 1px solid var(--background-modifier-border);
+      background-color: var(--background-primary);
+      padding: calc(16px * var(--density-modifier));
+      align-items: flex-start;
+      position: relative;
+      transition: var(--anim-duration-fast);
+
+      &:hover {
+        background-color: var(--background-modifier-hover);
+      }
+    }
+
+    .setting-item-info {
+      margin-inline-end: 0;
+    }
+    .setting-item-name {
+      font-family: var(--h1-font);
+      font-size: var(--font-ui-large);
+    }
+    .setting-item-description {
+      margin-inline-end: 16px;
+    }
+    .setting-item-control {
+      display: none;
+    }
+
+    a.external-link {
+      background-image: none;
+      position: absolute;
+      inset: 0;
+    }
+
+    .setting-item::before {
+      content: "";
+      width: 32px;
+      height: 32px;
+      right: 8px;
+      bottom: 8px;
+      position: absolute;
+      background-color: var(--background-modifier-hover);
+      -webkit-mask-position: 50% 50%;
+      -webkit-mask-size: 100% 100%;
+    }
+    .setting-item:first-child::before {
+      -webkit-mask-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXNoYXJlLWljb24gbHVjaWRlLXNoYXJlIj48cGF0aCBkPSJNMTIgMnYxMyIvPjxwYXRoIGQ9Im0xNiA2LTQtNC00IDQiLz48cGF0aCBkPSJNNCAxMnY4YTIgMiAwIDAgMCAyIDJoMTJhMiAyIDAgMCAwIDItMnYtOCIvPjwvc3ZnPg==);
+    }
+    .setting-item:nth-child(2)::before {
+      -webkit-mask-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXNwYXJrbGVzLWljb24gbHVjaWRlLXNwYXJrbGVzIj48cGF0aCBkPSJNMTEuMDE3IDIuODE0YTEgMSAwIDAgMSAxLjk2NiAwbDEuMDUxIDUuNTU4YTIgMiAwIDAgMCAxLjU5NCAxLjU5NGw1LjU1OCAxLjA1MWExIDEgMCAwIDEgMCAxLjk2NmwtNS41NTggMS4wNTFhMiAyIDAgMCAwLTEuNTk0IDEuNTk0bC0xLjA1MSA1LjU1OGExIDEgMCAwIDEtMS45NjYgMGwtMS4wNTEtNS41NThhMiAyIDAgMCAwLTEuNTk0LTEuNTk0bC01LjU1OC0xLjA1MWExIDEgMCAwIDEgMC0xLjk2Nmw1LjU1OC0xLjA1MWEyIDIgMCAwIDAgMS41OTQtMS41OTR6Ii8+PHBhdGggZD0iTTIwIDJ2NCIvPjxwYXRoIGQ9Ik0yMiA0aC00Ii8+PGNpcmNsZSBjeD0iNCIgY3k9IjIwIiByPSIyIi8+PC9zdmc+);
+    }
+    .setting-item:last-child::before {
+      -webkit-mask-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXR5cGUtaWNvbiBsdWNpZGUtdHlwZSI+PHBhdGggZD0iTTEyIDR2MTYiLz48cGF0aCBkPSJNNCA3VjVhMSAxIDAgMCAxIDEtMWgxNGExIDEgMCAwIDEgMSAxdjIiLz48cGF0aCBkPSJNOSAyMGg2Ii8+PC9zdmc+);
+    }
+  }
+}
+body.is-phone .style-settings-container .setting-item-heading[data-id="info"] + .style-settings-container {
+  flex-direction: column;
 }
