@@ -66,12 +66,12 @@ body.layout-classic:not(.is-mobile) {
   }
 
   // Editor panel
-  &:not(.tabs-floating, .tabs-underline, .theme-light.contrast-light-vivid, .colorful-frame) .mod-root .workspace-tab-header-container-inner {
+  &:not(.tabs-underline, .theme-light.contrast-light-vivid, .colorful-frame) .mod-root .workspace-tab-header-container-inner {
     padding-top: 1px;
     margin-bottom: -1px;
   }
   &.tabs-floating .mod-root .workspace-tab-header-container-inner {
-    --tab-outline-width: 0;
+    padding-right: 1px;
   }
   &.tabs-underline .mod-root .workspace-tab-header-container-inner {
     --tab-outline-width: 0;
