@@ -14,7 +14,6 @@ body.is-mobile {
 
 // All panels
 .workspace-tab-header-container {
-  transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
   padding-top: 8px;
   background-color: transparent;
 }
@@ -38,6 +37,7 @@ body:not(.stacked-nav-off) .mod-left-split .workspace-tabs.mod-top-left-space .s
 body:not(.is-phone) .workspace .mod-root {
   .workspace-tab-header-container {
     padding-left: 0;
+    transition: var(--anim-duration-fast);
   }
   .workspace-tab-header-container-inner {
     padding: 0 var(--radius-s) 0 calc(var(--radius-s) + 8px);
