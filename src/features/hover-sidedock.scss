@@ -72,10 +72,10 @@ body:not(.is-mobile).hover-sidedock {
     }
 
     &.mod-left-split:not(:hover) {
-      transform: translateX(calc(-1 * var(--hover-sidedock-trigger-area, 300px))) scale(0.95);
+      transform: translateX(calc(-1 * calc(var(--hover-sidedock-width, 320px) - var(--hover-sidedock-trigger-area, 8px))));
     }
     &.mod-right-split:not(:hover) {
-      transform: translateX(var(--hover-sidedock-trigger-area, 300px)) scale(0.95);
+      transform: translateX(calc(var(--hover-sidedock-width, 320px) - var(--hover-sidedock-trigger-area, 8px)));
     }
 
     &.mod-right-split {
