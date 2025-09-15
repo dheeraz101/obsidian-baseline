@@ -1,4 +1,10 @@
 {
+  "Lazy Administrator": {
+    "id": "admin",
+    "author": "Bradley Wyatt",
+    "url": "https://github.com/bwya77",
+    "description": "High contrast, sleek and professional."
+  },
   "macOS Tahoe": {
     "id": "tahoe",
     "author": "Alexis C",
@@ -10,12 +16,6 @@
     "author": "Alexis C",
     "url": "https://github.com/aaaaalexis",
     "description": "Inspired by Apple's timeless design philosophy."
-  },
-  "Notion": {
-    "id": "notion",
-    "author": "Alexis C",
-    "url": "https://github.com/aaaaalexis",
-    "description": "Effortlessly minimal, designed for clarity and focus."
   },
   "Sanctum": {
     "id": "sanctum",
@@ -35,15 +35,21 @@
     "url": "https://tiniri.vlad.studio",
     "description": "Optimized for calmness and coziness."
   },
-  "Lazy Administrator": {
-    "id": "admin",
-    "author": "Bradley Wyatt",
-    "url": "https://github.com/bwya77",
-    "description": "High contrast, sleek and professional."
-  },
   "Softener": {
     "id": "softener",
     "author": "chuuuby",
     "description": "Pastel colors and spacious workspace for your eye comfort."
+  },
+  "Notion": {
+    "id": "notion",
+    "author": "Alexis C",
+    "url": "https://github.com/aaaaalexis",
+    "description": "Effortlessly minimal, designed for clarity and focus."
+  },
+  "Minimal": {
+    "id": "minimal",
+    "author": "kepano",
+    "url": "https://github.com/kepano/obsidian-minimal",
+    "description": "A distraction-free experience for your vault."
   }
 }
