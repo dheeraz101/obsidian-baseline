@@ -12,7 +12,8 @@ body:not(.layout-cards, .layout-border, .layout-frame, .layout-macos) {
   }
 }
 
-body.layout-classic:not(.is-mobile) {
+body.layout-classic:not(.is-mobile),
+body.layout-minimal:not(.is-mobile) {
   &:not(.colorful-frame) {
     --tab-outline-width: var(--border-width);
   }
@@ -27,12 +28,13 @@ body.layout-classic:not(.is-mobile) {
 
   // Side panels
   &:not(.stacked-nav-off) .mod-sidedock.mod-left-split {
-    .workspace-leaf-content > .nav-header,
-    .workspace-leaf-content > .view-content > div:not(.nav-buttons-container):not(.graph-controls) {
-      padding-top: 0;
-      padding-bottom: 8px;
+    .sidebar-toggle-button::after {
+      height: var(--tab-outline-width);
+      background-color: var(--tab-outline-color);
+      content: "";
+      position: absolute;
+      inset: auto -100vw -8px;
     }
-
     .mod-top-left-space {
       .workspace-tab-header-container {
         border-bottom: none;
@@ -42,12 +44,10 @@ body.layout-classic:not(.is-mobile) {
         position: relative;
         padding-top: 8px;
       }
-      .sidebar-toggle-button::after {
-        height: var(--tab-outline-width);
-        background-color: var(--tab-outline-color);
-        content: "";
-        position: absolute;
-        inset: auto -100vw -8px;
+      .workspace-leaf-content > .nav-header,
+      .workspace-leaf-content > .view-content > div:not(.nav-buttons-container):not(.graph-controls) {
+        padding-top: 0;
+        padding-bottom: 8px;
       }
     }
   }
@@ -57,6 +57,9 @@ body.layout-classic:not(.is-mobile) {
   .mod-sidedock {
     & > .workspace-leaf-resize-handle {
       border-color: var(--background-modifier-border);
+    }
+    .workspace-tabs:not(.mod-top) .workspace-tab-header-container {
+      border-bottom: none;
     }
     .workspace-leaf-content > .nav-header,
     .workspace-leaf-content > .view-content > div:not(.nav-buttons-container):not(.graph-controls) {
@@ -82,6 +85,13 @@ body.layout-classic:not(.is-mobile) {
     .workspace-tabs .workspace-tab-container {
       border-radius: 0;
     }
+  }
+}
+body.layout-minimal:not(.is-mobile) {
+  .mod-root,
+  .mod-sidedock.mod-right-split,
+  .mod-sidedock.mod-right-split .workspace-tabs .workspace-leaf {
+    background-color: var(--background-primary);
   }
 }
 
