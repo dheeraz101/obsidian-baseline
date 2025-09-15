@@ -2335,6 +2335,15 @@ settings:
 				label: Block background
 				value: embed-block
 	-
+		id: embed-border-thickness
+		title: Embed border thickness
+		type: variable-number-slider
+		format: px
+		default: 2
+		min: 0
+		max: 5
+		step: 1
+	-
 		id: embed-hide-title
 		title: Hide embed titles
 		description: Hide title of the embed file
@@ -2349,6 +2358,14 @@ settings:
 	-
 		id: embed-background
 		title: Embed background
+		type: variable-themed-color
+		opacity: true
+		format: hex
+		default-light: '#'
+		default-dark: '#'
+	-
+		id: embed-border-color
+		title: Embed border color
 		type: variable-themed-color
 		opacity: true
 		format: hex

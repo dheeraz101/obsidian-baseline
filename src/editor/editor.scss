@@ -26,9 +26,10 @@
     --code-tag: var(--color-red);
     --code-value: var(--color-purple);
 
-    --embed-border-start: 2px solid var(--color-base-50);
     --embed-padding: 0 0 0 16px;
     --embed-max-height: none;
+    --embed-background: var(--background-primary-alt);
+    --embed-border-start: var(--embed-border-thickness, 2px) solid var(--embed-border-color, var(--color-base-50));
 
     --media-radius: var(--radius-s);
 
@@ -207,12 +208,6 @@
     --embed-background: var(--background-primary-alt);
     --embed-border-start: none;
     --embed-padding: 16px;
-
-    .internal-embed,
-    .inline-embed,
-    .markdown-embed:not(.canvas-node-content) {
-      border-radius: var(--media-radius);
-    }
   }
   .embed-hide-title .embed-title {
     display: none;
@@ -223,6 +218,8 @@
     flex-direction: column;
     max-height: var(--embed-max-height);
     overflow: hidden;
+    border-start-end-radius: var(--media-radius);
+    border-end-end-radius: var(--media-radius);
   }
   .inline-embed > .markdown-embed-title {
     padding: 16px;
@@ -235,6 +232,7 @@
     width: -webkit-fill-available;
     aspect-ratio: 16/9;
     height: auto;
+    border-radius: var(--media-radius);
   }
   .block-language-chart {
     width: 100% !important;
