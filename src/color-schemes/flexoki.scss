@@ -59,9 +59,10 @@ https://stephango.com/flexoki
 .theme-light.flexoki-light.contrast-light-vivid .status-bar,
 .theme-light.flexoki-light.contrast-light-vivid .workspace::before,
 .theme-light.flexoki-light.contrast-light-vivid .workspace-ribbon,
-.theme-light.flexoki-light.contrast-light-vivid .mod-sidedock,
-.theme-light.flexoki-light.contrast-light-vivid .mod-root .workspace-tab-header-container,
-.theme-light.flexoki-light.contrast-light-vivid .mod-root .workspace-tab-header-container::before {
+.theme-light.flexoki-light.contrast-light-vivid .mod-sidedock.mod-left-split,
+.theme-light:not(.layout-minimal).flexoki-light.contrast-light-vivid .mod-sidedock.mod-right-split,
+.theme-light:not(.layout-minimal).flexoki-light.contrast-light-vivid .mod-root .workspace-tab-header-container,
+.theme-light:not(.layout-minimal).flexoki-light.contrast-light-vivid .mod-root .workspace-tab-header-container::before {
   --color-red-rgb: 209, 77, 65;
   --color-orange-rgb: 218, 112, 44;
   --color-yellow-rgb: 208, 162, 21;

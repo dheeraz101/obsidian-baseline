@@ -61,9 +61,10 @@ https://github.com/morhetz/gruvbox
 .theme-light.gruvbox-light.contrast-light-vivid .status-bar,
 .theme-light.gruvbox-light.contrast-light-vivid .workspace::before,
 .theme-light.gruvbox-light.contrast-light-vivid .workspace-ribbon,
-.theme-light.gruvbox-light.contrast-light-vivid .mod-sidedock,
-.theme-light.gruvbox-light.contrast-light-vivid .mod-root .workspace-tab-header-container,
-.theme-light.gruvbox-light.contrast-light-vivid .mod-root .workspace-tab-header-container::before {
+.theme-light.gruvbox-light.contrast-light-vivid .mod-sidedock.mod-left-split,
+.theme-light:not(.layout-minimal).gruvbox-light.contrast-light-vivid .mod-sidedock.mod-right-split,
+.theme-light:not(.layout-minimal).gruvbox-light.contrast-light-vivid .mod-root .workspace-tab-header-container,
+.theme-light:not(.layout-minimal).gruvbox-light.contrast-light-vivid .mod-root .workspace-tab-header-container::before {
   --background-primary: #282828;
   --background-primary-alt: #1e2021;
   --background-secondary: #1e2021;

@@ -24,17 +24,6 @@ body.theme-light.contrast-light-vivid {
     opacity: 1;
   }
 
-  .mod-root .workspace-tab-header-container {
-    background-color: var(--background-secondary);
-  }
-  .mod-root .workspace-tab-header-container::before {
-    content: "";
-    position: absolute;
-    inset: -100vh 0;
-    background: var(--background-secondary);
-    pointer-events: none;
-  }
-
   &:not(.accented-interface) {
     .titlebar,
     .status-bar,
@@ -47,14 +36,27 @@ body.theme-light.contrast-light-vivid {
     }
   }
 
+  &.nav-item-strong .mod-sidedock {
+    --nav-item-background-active: var(--interactive-accent);
+    --nav-item-color-active: var(--text-on-accent);
+  }
   &:not(.nav-item-subtle, .nav-item-strong) .mod-sidedock {
     --nav-item-background-hover: transparent;
     --nav-item-background-active: transparent;
     --nav-item-weight-hover: var(--font-medium);
   }
-  &.nav-item-strong .mod-sidedock {
-    --nav-item-background-active: var(--interactive-accent);
-    --nav-item-color-active: var(--text-on-accent);
+
+  &:not(.layout-minimal) .mod-root {
+    .workspace-tab-header-container {
+      background-color: var(--background-secondary);
+    }
+    .workspace-tab-header-container::before {
+      content: "";
+      position: absolute;
+      inset: -100vh 0;
+      background: var(--background-secondary);
+      pointer-events: none;
+    }
   }
 
   --graph-text: var(--color-base-20) !important;
@@ -66,10 +68,11 @@ body.theme-light.contrast-light-vivid {
   .status-bar,
   .workspace::before,
   .workspace-ribbon,
-  .mod-sidedock,
-  .mod-root .workspace-tab-header-container::before,
-  .mod-root .workspace-tab-header-container > div:not(.workspace-tab-header-container-inner),
-  &.tab-underline .mod-root .workspace-tab-header-container .workspace-tab-header-container-inner > .workspace-tab-header > .workspace-tab-header-inner {
+  .mod-sidedock.mod-left-split,
+  &:not(.layout-minimal) .mod-sidedock.mod-right-split,
+  &:not(.layout-minimal) .mod-root .workspace-tab-header-container::before,
+  &:not(.layout-minimal) .mod-root .workspace-tab-header-container > div:not(.workspace-tab-header-container-inner),
+  &:not(.layout-minimal).tabs-underline .mod-root .workspace-tab-header-inner {
     --collapse-icon-color: var(--text-faint);
     --collapse-icon-color-collapsed: var(--text-accent);
     --divider-color: var(--background-modifier-border);

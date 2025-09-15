@@ -69,9 +69,10 @@ https://github.com/jdanielmourao/obsidian-sanctum/
 .theme-light.sanctum-light.contrast-light-vivid .status-bar,
 .theme-light.sanctum-light.contrast-light-vivid .workspace::before,
 .theme-light.sanctum-light.contrast-light-vivid .workspace-ribbon,
-.theme-light.sanctum-light.contrast-light-vivid .mod-sidedock,
-.theme-light.sanctum-light.contrast-light-vivid .mod-root .workspace-tab-header-container,
-.theme-light.sanctum-light.contrast-light-vivid .mod-root .workspace-tab-header-container::before {
+.theme-light.sanctum-light.contrast-light-vivid .mod-sidedock.mod-left-split,
+.theme-light:not(.layout-minimal).sanctum-light.contrast-light-vivid .mod-sidedock.mod-right-split,
+.theme-light:not(.layout-minimal).sanctum-light.contrast-light-vivid .mod-root .workspace-tab-header-container,
+.theme-light:not(.layout-minimal).sanctum-light.contrast-light-vivid .mod-root .workspace-tab-header-container::before {
   --background-primary: rgb(var(--gray-100));
   --background-primary-alt: rgb(var(--gray-90));
   --background-secondary: rgb(var(--gray-90));

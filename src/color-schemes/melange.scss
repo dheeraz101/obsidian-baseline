@@ -53,9 +53,10 @@ https://github.com/savq/melange-nvim
 .theme-light.melange-light.contrast-light-vivid .status-bar,
 .theme-light.melange-light.contrast-light-vivid .workspace::before,
 .theme-light.melange-light.contrast-light-vivid .workspace-ribbon,
-.theme-light.melange-light.contrast-light-vivid .mod-sidedock,
-.theme-light.melange-light.contrast-light-vivid .mod-root .workspace-tab-header-container,
-.theme-light.melange-light.contrast-light-vivid .mod-root .workspace-tab-header-container::before {
+.theme-light.melange-light.contrast-light-vivid .mod-sidedock.mod-left-split,
+.theme-light:not(.layout-minimal).melange-light.contrast-light-vivid .mod-sidedock.mod-right-split,
+.theme-light:not(.layout-minimal).melange-light.contrast-light-vivid .mod-root .workspace-tab-header-container,
+.theme-light:not(.layout-minimal).melange-light.contrast-light-vivid .mod-root .workspace-tab-header-container::before {
   --interactive-normal: #292522;
   --background-primary: #292522;
   --background-primary-alt: #34302c;

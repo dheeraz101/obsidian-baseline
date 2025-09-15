@@ -14,12 +14,9 @@ body:not(.layout-cards, .layout-border, .layout-frame, .layout-macos) {
 
 body.layout-classic:not(.is-mobile),
 body.layout-minimal:not(.is-mobile) {
-  &:not(.colorful-frame) {
+  &:not(.colorful-frame),
+  &:not(.theme-light.contrast-light-vivid) .mod-root {
     --tab-outline-width: var(--border-width);
-  }
-
-  &.theme-light.contrast-light-vivid .mod-root {
-    --tab-outline-width: 0;
   }
 
   &.status-bar-full {
@@ -88,6 +85,25 @@ body.layout-minimal:not(.is-mobile) {
   }
 }
 body.layout-minimal:not(.is-mobile) {
+  &.tabs-floating {
+    --tab-background-active: var(--background-modifier-hover);
+    --tab-outline-width: 0;
+
+    .mod-root {
+      --tab-outline-width: 0 !important;
+
+      .workspace-tab-header-container-inner {
+        padding-top: 0;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &.theme-light.contrast-light-vivid .mod-root .workspace-tab-header-container-inner {
+    padding-top: 1px;
+    margin-bottom: -1px;
+  }
+
   .mod-root,
   .mod-sidedock.mod-right-split,
   .mod-sidedock.mod-right-split .workspace-tabs .workspace-leaf {

@@ -35,9 +35,10 @@
 .theme-light.macos-light.contrast-light-vivid .status-bar,
 .theme-light.macos-light.contrast-light-vivid .workspace::before,
 .theme-light.macos-light.contrast-light-vivid .workspace-ribbon,
-.theme-light.macos-light.contrast-light-vivid .mod-sidedock,
-.theme-light.macos-light.contrast-light-vivid .mod-root .workspace-tab-header-container,
-.theme-light.macos-light.contrast-light-vivid .mod-root .workspace-tab-header-container::before {
+.theme-light.macos-light.contrast-light-vivid .mod-sidedock.mod-left-split,
+.theme-light:not(.layout-minimal).macos-light.contrast-light-vivid .mod-sidedock.mod-right-split,
+.theme-light:not(.layout-minimal).macos-light.contrast-light-vivid .mod-root .workspace-tab-header-container,
+.theme-light:not(.layout-minimal).macos-light.contrast-light-vivid .mod-root .workspace-tab-header-container::before {
   --color-red-rgb: 255, 69, 58;
   --color-red: #ff453a;
   --color-orange-rgb: 255, 159, 10;

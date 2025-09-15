@@ -58,9 +58,10 @@ https://github.com/rose-pine/rose-pine-theme
 .theme-light.rose-pine-light.contrast-light-vivid .status-bar,
 .theme-light.rose-pine-light.contrast-light-vivid .workspace::before,
 .theme-light.rose-pine-light.contrast-light-vivid .workspace-ribbon,
-.theme-light.rose-pine-light.contrast-light-vivid .mod-sidedock,
-.theme-light.rose-pine-light.contrast-light-vivid .mod-root .workspace-tab-header-container,
-.theme-light.rose-pine-light.contrast-light-vivid .mod-root .workspace-tab-header-container::before {
+.theme-light.rose-pine-light.contrast-light-vivid .mod-sidedock.mod-left-split,
+.theme-light:not(.layout-minimal).rose-pine-light.contrast-light-vivid .mod-sidedock.mod-right-split,
+.theme-light:not(.layout-minimal).rose-pine-light.contrast-light-vivid .mod-root .workspace-tab-header-container,
+.theme-light:not(.layout-minimal).rose-pine-light.contrast-light-vivid .mod-root .workspace-tab-header-container::before {
   --color-red-rgb: 234, 111, 146;
   --color-orange-rgb: 233, 155, 151;
   --color-yellow-rgb: 246, 193, 119;

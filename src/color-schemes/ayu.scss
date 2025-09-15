@@ -56,9 +56,10 @@ https://github.com/ayu-theme/ayu-colors
 .theme-light.ayu-light.contrast-light-vivid .status-bar,
 .theme-light.ayu-light.contrast-light-vivid .workspace::before,
 .theme-light.ayu-light.contrast-light-vivid .workspace-ribbon,
-.theme-light.ayu-light.contrast-light-vivid .mod-sidedock,
-.theme-light.ayu-light.contrast-light-vivid .mod-root .workspace-tab-header-container,
-.theme-light.ayu-light.contrast-light-vivid .mod-root .workspace-tab-header-container::before {
+.theme-light.ayu-light.contrast-light-vivid .mod-sidedock.mod-left-split,
+.theme-light:not(.layout-minimal).ayu-light.contrast-light-vivid .mod-sidedock.mod-right-split,
+.theme-light:not(.layout-minimal).ayu-light.contrast-light-vivid .mod-root .workspace-tab-header-container,
+.theme-light:not(.layout-minimal).ayu-light.contrast-light-vivid .mod-root .workspace-tab-header-container::before {
   --color-red-rgb: 255, 102, 102;
   --color-orange-rgb: 250, 173, 102;
   --color-yellow-rgb: 255, 209, 55;

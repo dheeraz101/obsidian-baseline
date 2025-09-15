@@ -34,9 +34,10 @@
 .theme-light.notion-light.contrast-light-vivid .status-bar,
 .theme-light.notion-light.contrast-light-vivid .workspace::before,
 .theme-light.notion-light.contrast-light-vivid .workspace-ribbon,
-.theme-light.notion-light.contrast-light-vivid .mod-sidedock,
-.theme-light.notion-light.contrast-light-vivid .mod-root .workspace-tab-header-container,
-.theme-light.notion-light.contrast-light-vivid .mod-root .workspace-tab-header-container::before {
+.theme-light.notion-light.contrast-light-vivid .mod-sidedock.mod-left-split,
+.theme-light:not(.layout-minimal).notion-light.contrast-light-vivid .mod-sidedock.mod-right-split,
+.theme-light:not(.layout-minimal).notion-light.contrast-light-vivid .mod-root .workspace-tab-header-container,
+.theme-light:not(.layout-minimal).notion-light.contrast-light-vivid .mod-root .workspace-tab-header-container::before {
   --background-primary: #191919;
   --background-primary-alt: #202020;
   --background-secondary: #202020;

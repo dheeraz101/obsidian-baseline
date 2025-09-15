@@ -66,9 +66,10 @@ https://github.com/sainnhe/everforest
 .theme-light.everforest-light.contrast-light-vivid .status-bar,
 .theme-light.everforest-light.contrast-light-vivid .workspace::before,
 .theme-light.everforest-light.contrast-light-vivid .workspace-ribbon,
-.theme-light.everforest-light.contrast-light-vivid .mod-sidedock,
-.theme-light.everforest-light.contrast-light-vivid .mod-root .workspace-tab-header-container,
-.theme-light.everforest-light.contrast-light-vivid .mod-root .workspace-tab-header-container::before {
+.theme-light.everforest-light.contrast-light-vivid .mod-sidedock.mod-left-split,
+.theme-light:not(.layout-minimal).everforest-light.contrast-light-vivid .mod-sidedock.mod-right-split,
+.theme-light:not(.layout-minimal).everforest-light.contrast-light-vivid .mod-root .workspace-tab-header-container,
+.theme-light:not(.layout-minimal).everforest-light.contrast-light-vivid .mod-root .workspace-tab-header-container::before {
   --color-red-rgb: 230, 126, 128;
   --color-orange-rgb: 230, 152, 117;
   --color-yellow-rgb: 219, 188, 127;
