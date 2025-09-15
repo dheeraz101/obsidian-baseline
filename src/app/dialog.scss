@@ -153,6 +153,7 @@ body.is-phone .suggestion-container {
   .horizontal-tab-content,
   .vertical-tab-content {
     background-color: transparent;
+    scrollbar-gutter: stable;
   }
 
   .setting-item {
