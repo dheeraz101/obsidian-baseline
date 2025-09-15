@@ -1,4 +1,4 @@
-body:not(.layout-cards, .layout-border, .layout-macos) {
+body:not(.layout-cards, .layout-border, .layout-frame, .layout-macos) {
   --ribbon-padding: 8px 0 12px 8px;
 
   &.show-ribbon .mod-sidedock.mod-left-split {
@@ -352,41 +352,19 @@ body.layout-frame:not(.is-mobile) {
     }
   }
 
-  // Side panels
-  &:not(.stacked-nav-off) .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container {
-    gap: 0;
-  }
-  &.stacked-nav-off .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container {
-    padding-left: calc(var(--frame-left-space) - 8px);
-  }
-
-  &.show-ribbon {
-    --ribbon-width: calc(var(--header-height) - 8px);
-
-    &:not(.mod-macos) {
-      .stacked-nav-off .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container {
-        padding-left: 8px;
-      }
-      .workspace-ribbon .sidebar-toggle-button {
-        padding-left: 8px;
-      }
-    }
-    &.mod-macos .workspace-ribbon.mod-left {
-      padding-top: calc(var(--header-height) - 8px);
-    }
-
+  // Ribbon
+  &.mod-macos.show-ribbon {
     .workspace-ribbon {
-      margin-right: 0;
-      border-right: 0;
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
+      --ribbon-width: calc(var(--header-height) + 28px);
     }
-    .mod-sidedock.mod-left-split {
-      margin-left: 0;
-      border-left: 0;
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
+    .workspace:not(.is-left-sidedock-open) .mod-root {
+      --frame-left-space: 0px;
     }
+  }
+
+  // Side panels
+  &.show-ribbon.stacked-nav-off .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container {
+    padding-left: 0;
   }
 
   // Editor panel
