@@ -220,7 +220,7 @@ body.labeled-tabs-single .workspace-tab-header:only-child {
 }
 
 // Side panels: Platforms
-body .mod-sidedock .workspace-tabs.mod-top-right-space .workspace-tab-header-container {
+body:not(.mod-macos).is-hidden-frameless .mod-sidedock .workspace-tabs.mod-top-right-space .workspace-tab-header-container {
   padding-right: var(--frame-right-space);
 }
 
