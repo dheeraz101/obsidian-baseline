@@ -55,9 +55,6 @@ body.layout-minimal:not(.is-mobile) {
     & > .workspace-leaf-resize-handle {
       border-color: var(--background-modifier-border);
     }
-    .workspace-tabs:not(.mod-top) .workspace-tab-header-container {
-      border-bottom: none;
-    }
     .workspace-leaf-content > .nav-header,
     .workspace-leaf-content > .view-content > div:not(.nav-buttons-container):not(.graph-controls) {
       padding-top: 8px;
@@ -102,6 +99,10 @@ body.layout-minimal:not(.is-mobile) {
   &.theme-light.contrast-light-vivid .mod-root .workspace-tab-header-container-inner {
     padding-top: 1px;
     margin-bottom: -1px;
+  }
+
+  .mod-sidedock .workspace-tabs:not(.mod-top) .workspace-tab-header-container {
+    border-bottom: none;
   }
 
   .mod-root,
