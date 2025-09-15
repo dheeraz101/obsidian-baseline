@@ -11,6 +11,7 @@ body:not(.stacked-nav-off) .mod-sidedock.mod-left-split .mod-top-left-space {
     flex-direction: column;
     width: 100%;
     gap: calc(4px * var(--density-modifier));
+    animation: workspaceLeafIn var(--anim-duration-moderate) var(--anim-motion-baseline) forwards;
   }
   .workspace-tab-header {
     padding: 8px;
