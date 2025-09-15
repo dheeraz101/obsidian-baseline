@@ -2237,15 +2237,6 @@ settings:
 				label: Outlined
 				value: callouts-outlined
 	-
-		id: callout-radius
-		title: Callout Radius
-		type: variable-number-slider
-		default: 8
-		min: 0
-		max: 16
-		step: 1
-		format: px
-	-
 		id: callout-size
 		title: Callout font size
 		description: Accepts any CSS font-size value
