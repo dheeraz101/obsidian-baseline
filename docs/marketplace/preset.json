@@ -40,11 +40,11 @@
     "author": "chuuuby",
     "description": "Pastel colors and spacious workspace for your eye comfort."
   },
-  "Notion": {
-    "id": "notion",
+  "Ocean": {
+    "id": "ocean",
     "author": "Alexis C",
     "url": "https://github.com/aaaaalexis",
-    "description": "Effortlessly minimal, designed for clarity and focus."
+    "description": "Inspired by [Notion](https://www.notion.com/). Effortlessly minimal, designed for clarity and focus."
   },
   "Minimal": {
     "id": "minimal",
