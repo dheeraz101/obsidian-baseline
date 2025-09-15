@@ -1,6 +1,4 @@
 body:not(.layout-cards, .layout-border, .layout-frame) {
-  --ribbon-padding: 8px 0 12px 8px;
-
   &.show-ribbon:not(.stacked-nav-off) .mod-sidedock.mod-left-split {
     .mod-top-left-space .workspace-tab-header-container {
       padding-left: 0;
@@ -48,7 +46,15 @@ body.layout-minimal:not(.is-mobile) {
       }
     }
   }
-  .workspace-ribbon.mod-left {
+  &.show-ribbon:not(.stacked-nav-off) {
+    .workspace-ribbon.mod-left::before {
+      border-bottom: none;
+    }
+    .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container-inner {
+      padding-top: 0;
+    }
+  }
+  &.show-ribbon.stacked-nav-off .workspace-ribbon.mod-left {
     padding-top: calc(var(--header-height) + 8px);
   }
   .mod-sidedock {
