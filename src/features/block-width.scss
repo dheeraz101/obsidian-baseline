@@ -2,19 +2,32 @@ body:not(.block-width-off) {
   --file-line-width: var(--line-width);
   --line-width: 40rem;
   --line-width-wide: 50rem;
-  --max-width: 90%;
+  --line-width-max: 90%;
 
+  &.wide,
+  .wide {
+    --active-line-width: var(--line-width-wide);
+  }
   &:is(.wide, .table-wide, .img-wide, .iframe-wide, .map-wide, .chart-wide, .bases-wide),
   div:is(.wide, .table-wide, .img-wide, .iframe-wide, .map-wide, .chart-wide, .bases-wide) {
     --file-line-width: var(--line-width-wide);
   }
+  &.max,
+  .max {
+    --active-line-width: var(--line-width-max);
+
+    .cm-content {
+      max-width: 100% !important;
+    }
+  }
   &:is(.max, .table-max, .img-max, .iframe-max, .map-max, .chart-max, .bases-max),
   div:is(.max, .table-max, .img-max, .iframe-max, .map-max, .chart-max, .bases-max) {
-    --file-line-width: var(--max-width);
+    --file-line-width: var(--line-width-max);
 
     &.markdown-preview-view,
-    .markdown-preview-view {
-      padding: var(--file-margins) 0;
+    .markdown-preview-view,
+    .cm-scroller {
+      padding: var(--file-margins) 0 !important;
     }
   }
   &:is(.table-100, .img-100, .iframe-100, .map-100, .chart-100, .bases-100),
@@ -22,8 +35,9 @@ body:not(.block-width-off) {
     --file-line-width: 100%;
 
     &.markdown-preview-view,
-    .markdown-preview-view {
-      padding: var(--file-margins) 0;
+    .markdown-preview-view,
+    .cm-scroller {
+      padding: var(--file-margins) 0 !important;
     }
   }
   &.is-mobile:is(.table-100, .img-100, .iframe-100, .map-100, .chart-100, .bases-100),
@@ -31,22 +45,15 @@ body:not(.block-width-off) {
     --file-margins: 24px;
 
     &.markdown-preview-view,
-    .markdown-preview-view {
-      padding: 8px 0;
+    .markdown-preview-view,
+    .cm-scroller {
+      padding: 8px 0 !important;
     }
   }
 
   // Fix content centering
   .markdown-preview-sizer > div {
     margin: 0 auto;
-  }
-  .markdown-source-view.mod-cm6.is-readable-line-width .cm-sizer {
-    max-width: var(--line-width);
-  }
-
-  // Fix image width
-  .cm-contentContainer > .cm-content > img {
-    width: revert-layer !important;
   }
 }
 
@@ -55,7 +62,7 @@ body:not(.block-width-off) {
   --table-line-width: var(--line-width-wide);
 }
 .table-max {
-  --table-line-width: var(--max-width);
+  --table-line-width: var(--line-width-max);
 }
 body:not(.block-width-off).table-100,
 body:not(.block-width-off) .table-100 {
@@ -85,8 +92,12 @@ body:not(.block-width-off) div:is(.table-wide, .table-max, .table-100) {
     max-width: var(--table-line-width) !important;
     width: var(--table-line-width) !important;
   }
-  .markdown-preview-sizer > div:not(.el-table) {
-    max-width: var(--line-width) !important;
+  .markdown-preview-sizer > div:not(.el-table),
+  .cm-sizer > .inline-title,
+  .cm-sizer > .metadata-container,
+  .cm-sizer > .embedded-backlinks,
+  .cm-content > *:not(.cm-table-widget) {
+    max-width: var(--active-line-width, var(--line-width)) !important;
     margin-left: auto !important;
     margin-right: auto !important;
     width: calc(100% - var(--file-margins) * 2);
@@ -98,12 +109,13 @@ body:not(.block-width-off) div:is(.table-wide, .table-max, .table-100) {
   --img-line-width: var(--line-width-wide);
 }
 .img-max {
-  --img-line-width: var(--max-width);
+  --img-line-width: var(--line-width-max);
 }
 .img-100 {
   --img-line-width: 100%;
 
-  .markdown-preview-sizer img {
+  .markdown-preview-sizer img,
+  .cm-content img {
     border-radius: 0 !important;
   }
 }
@@ -113,8 +125,12 @@ body:not(.block-width-off) div:is(.img-wide, .img-max, .img-100) {
     max-width: var(--img-line-width) !important;
     width: var(--img-line-width) !important;
   }
-  .markdown-preview-sizer > div:not(.el-p:has(img)) {
-    max-width: var(--line-width) !important;
+  .markdown-preview-sizer > div:not(.el-p:has(img)),
+  .cm-sizer > .inline-title,
+  .cm-sizer > .metadata-container,
+  .cm-sizer > .embedded-backlinks,
+  .cm-content > *:not(img) {
+    max-width: var(--active-line-width, var(--line-width)) !important;
     margin-left: auto !important;
     margin-right: auto !important;
     width: calc(100% - var(--file-margins) * 2);
@@ -126,7 +142,7 @@ body:not(.block-width-off) div:is(.img-wide, .img-max, .img-100) {
   --iframe-line-width: var(--line-width-wide);
 }
 .iframe-max {
-  --iframe-line-width: var(--max-width);
+  --iframe-line-width: var(--line-width-max);
 }
 .iframe-100 {
   --iframe-line-width: 100%;
@@ -137,8 +153,12 @@ body:not(.block-width-off) div:is(.iframe-wide, .iframe-max, .iframe-100) {
     max-width: var(--iframe-line-width) !important;
     width: var(--iframe-line-width) !important;
   }
-  .markdown-preview-sizer > div:not(.el-p:has(iframe)) {
-    max-width: var(--line-width) !important;
+  .markdown-preview-sizer > div:not(.el-p:has(iframe)),
+  .cm-sizer > .inline-title,
+  .cm-sizer > .metadata-container,
+  .cm-sizer > .embedded-backlinks,
+  .cm-content > *:not(iframe) {
+    max-width: var(--active-line-width, var(--line-width)) !important;
     margin-left: auto !important;
     margin-right: auto !important;
     width: calc(100% - var(--file-margins) * 2);
@@ -150,7 +170,7 @@ body:not(.block-width-off) div:is(.iframe-wide, .iframe-max, .iframe-100) {
   --map-line-width: var(--line-width-wide);
 }
 .map-max {
-  --map-line-width: var(--max-width);
+  --map-line-width: var(--line-width-max);
 }
 .map-100 {
   --map-line-width: 100%;
@@ -161,8 +181,12 @@ body:not(.block-width-off) div:is(.map-wide, .map-max, .map-100) {
     max-width: var(--map-line-width) !important;
     width: var(--map-line-width) !important;
   }
-  .markdown-preview-sizer > div:not(.el-pre:has(.block-language-leaflet)) {
-    max-width: var(--line-width) !important;
+  .markdown-preview-sizer > div:not(.el-pre:has(.block-language-leaflet)),
+  .cm-sizer > .inline-title,
+  .cm-sizer > .metadata-container,
+  .cm-sizer > .embedded-backlinks,
+  .cm-content > *:not(.cm-lang-leaflet) {
+    max-width: var(--active-line-width, var(--line-width)) !important;
     margin-left: auto !important;
     margin-right: auto !important;
     width: calc(100% - var(--file-margins) * 2);
@@ -174,7 +198,7 @@ body:not(.block-width-off) div:is(.map-wide, .map-max, .map-100) {
   --chart-line-width: var(--line-width-wide);
 }
 .chart-max {
-  --chart-line-width: var(--max-width);
+  --chart-line-width: var(--line-width-max);
 }
 .chart-100 {
   --chart-line-width: 100%;
@@ -185,8 +209,12 @@ body:not(.block-width-off) div:is(.chart-wide, .chart-max, .chart-100) {
     max-width: var(--chart-line-width) !important;
     width: var(--chart-line-width) !important;
   }
-  .markdown-preview-sizer > div:not(.el-pre:has(.block-language-chart)) {
-    max-width: var(--line-width) !important;
+  .markdown-preview-sizer > div:not(.el-pre:has(.block-language-chart)),
+  .cm-sizer > .inline-title,
+  .cm-sizer > .metadata-container,
+  .cm-sizer > .embedded-backlinks,
+  .cm-content > *:not(.cm-lang-chart) {
+    max-width: var(--active-line-width, var(--line-width)) !important;
     margin-left: auto !important;
     margin-right: auto !important;
     width: calc(100% - var(--file-margins) * 2);
@@ -198,7 +226,7 @@ body:not(.block-width-off) div:is(.chart-wide, .chart-max, .chart-100) {
   --bases-line-width: var(--line-width-wide);
 }
 .bases-max {
-  --bases-line-width: var(--max-width);
+  --bases-line-width: var(--line-width-max);
 }
 body:not(.block-width-off).bases-100,
 body:not(.block-width-off) .bases-100 {
@@ -215,8 +243,12 @@ body:not(.block-width-off) div:is(.bases-wide, .bases-max, .bases-100) {
     max-width: var(--bases-line-width) !important;
     width: var(--bases-line-width) !important;
   }
-  .markdown-preview-sizer > div:not(.el-p:has(.bases-view)) {
-    max-width: var(--line-width) !important;
+  .markdown-preview-sizer > div:not(.el-p:has(.bases-view)),
+  .cm-sizer > .inline-title,
+  .cm-sizer > .metadata-container,
+  .cm-sizer > .embedded-backlinks,
+  .cm-content > *:not(.bases-embed) {
+    max-width: var(--active-line-width, var(--line-width)) !important;
     margin-left: auto !important;
     margin-right: auto !important;
     width: calc(100% - var(--file-margins) * 2);
