@@ -100,18 +100,16 @@ body:not(.block-width-off) .table-100 {
 body:not(.block-width-off):is(.table-wide, .table-max, .table-100),
 body:not(.block-width-off) div:is(.table-wide, .table-max, .table-100) {
   .markdown-preview-sizer > div.el-table:is(.el-table)[dir] {
-    max-width: var(--table-line-width) !important;
+    max-width: 100% !important;
     width: var(--table-line-width) !important;
   }
   .markdown-preview-sizer > div:not(.el-table),
-  .cm-sizer > .inline-title,
-  .cm-sizer > .metadata-container,
-  .cm-sizer > .embedded-backlinks,
+  .cm-sizer > div:not(.cm-contentContainer),
   .cm-content > *:not(.cm-table-widget) {
     max-width: var(--active-line-width, var(--line-width)) !important;
     margin-left: auto !important;
     margin-right: auto !important;
-    width: calc(100% - var(--file-margins) * 2);
+    width: max(calc(100% - var(--file-margins) * 2), 100%);
   }
 }
 
@@ -133,7 +131,7 @@ body:not(.block-width-off) div:is(.table-wide, .table-max, .table-100) {
 body:not(.block-width-off):is(.img-wide, .img-max, .img-100),
 body:not(.block-width-off) div:is(.img-wide, .img-max, .img-100) {
   .markdown-preview-sizer > div.el-p:has(img[src]):is(.el-p:has(img[src])) {
-    max-width: var(--img-line-width) !important;
+    max-width: 100% !important;
     width: var(--img-line-width) !important;
   }
   .markdown-preview-sizer > div:not(.el-p:has(img)),
@@ -142,7 +140,7 @@ body:not(.block-width-off) div:is(.img-wide, .img-max, .img-100) {
     max-width: var(--active-line-width, var(--line-width)) !important;
     margin-left: auto !important;
     margin-right: auto !important;
-    width: calc(100% - var(--file-margins) * 2);
+    width: max(calc(100% - var(--file-margins) * 2), 100%);
   }
 }
 
@@ -159,7 +157,7 @@ body:not(.block-width-off) div:is(.img-wide, .img-max, .img-100) {
 body:not(.block-width-off):is(.iframe-wide, .iframe-max, .iframe-100),
 body:not(.block-width-off) div:is(.iframe-wide, .iframe-max, .iframe-100) {
   .markdown-preview-sizer > div.el-p:has(iframe[src]):is(.el-p:has(iframe[src])) {
-    max-width: var(--iframe-line-width) !important;
+    max-width: 100% !important;
     width: var(--iframe-line-width) !important;
   }
   .markdown-preview-sizer > div:not(.el-p:has(iframe)),
@@ -168,7 +166,7 @@ body:not(.block-width-off) div:is(.iframe-wide, .iframe-max, .iframe-100) {
     max-width: var(--active-line-width, var(--line-width)) !important;
     margin-left: auto !important;
     margin-right: auto !important;
-    width: calc(100% - var(--file-margins) * 2);
+    width: max(calc(100% - var(--file-margins) * 2), 100%);
   }
 }
 
@@ -185,7 +183,7 @@ body:not(.block-width-off) div:is(.iframe-wide, .iframe-max, .iframe-100) {
 body:not(.block-width-off):is(.map-wide, .map-max, .map-100),
 body:not(.block-width-off) div:is(.map-wide, .map-max, .map-100) {
   .markdown-preview-sizer > div.el-pre:has(.block-language-leaflet[style]):is(.el-pre:has(.block-language-leaflet[style])) {
-    max-width: var(--map-line-width) !important;
+    max-width: 100% !important;
     width: var(--map-line-width) !important;
   }
   .markdown-preview-sizer > div:not(.el-pre:has(.block-language-leaflet)),
@@ -194,7 +192,7 @@ body:not(.block-width-off) div:is(.map-wide, .map-max, .map-100) {
     max-width: var(--active-line-width, var(--line-width)) !important;
     margin-left: auto !important;
     margin-right: auto !important;
-    width: calc(100% - var(--file-margins) * 2);
+    width: max(calc(100% - var(--file-margins) * 2), 100%);
   }
 }
 
@@ -211,7 +209,7 @@ body:not(.block-width-off) div:is(.map-wide, .map-max, .map-100) {
 body:not(.block-width-off):is(.chart-wide, .chart-max, .chart-100),
 body:not(.block-width-off) div:is(.chart-wide, .chart-max, .chart-100) {
   .markdown-preview-sizer > div.el-pre:has(.block-language-chart[style]):is(.el-pre:has(.block-language-chart[style])) {
-    max-width: var(--chart-line-width) !important;
+    max-width: 100% !important;
     width: var(--chart-line-width) !important;
   }
   .markdown-preview-sizer > div:not(.el-pre:has(.block-language-chart)),
@@ -220,7 +218,7 @@ body:not(.block-width-off) div:is(.chart-wide, .chart-max, .chart-100) {
     max-width: var(--active-line-width, var(--line-width)) !important;
     margin-left: auto !important;
     margin-right: auto !important;
-    width: calc(100% - var(--file-margins) * 2);
+    width: max(calc(100% - var(--file-margins) * 2), 100%);
   }
 }
 
@@ -243,7 +241,7 @@ body:not(.block-width-off) .bases-100 {
 body:not(.block-width-off):is(.bases-wide, .bases-max, .bases-100),
 body:not(.block-width-off) div:is(.bases-wide, .bases-max, .bases-100) {
   .markdown-preview-sizer > div.el-p:has(.bases-view):is(.el-p:has(.bases-view)) {
-    max-width: var(--bases-line-width) !important;
+    max-width: 100% !important;
     width: var(--bases-line-width) !important;
   }
   .markdown-preview-sizer > div:not(.el-p:has(.bases-view)),
@@ -252,6 +250,6 @@ body:not(.block-width-off) div:is(.bases-wide, .bases-max, .bases-100) {
     max-width: var(--active-line-width, var(--line-width)) !important;
     margin-left: auto !important;
     margin-right: auto !important;
-    width: calc(100% - var(--file-margins) * 2);
+    width: max(calc(100% - var(--file-margins) * 2), 100%);
   }
 }
