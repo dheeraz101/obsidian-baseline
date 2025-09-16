@@ -365,9 +365,17 @@ body.layout-frame:not(.is-mobile) {
   .workspace-tabs .workspace-leaf {
     background-color: transparent;
   }
-  .status-bar {
+  &:not(.status-bar-full, .status-bar-cupertino) .status-bar {
     right: 8px;
     bottom: 8px;
+  }
+  &.status-bar-full .workspace {
+    padding-bottom: 0;
+
+    .workspace-ribbon,
+    .workspace-split {
+      margin-bottom: 0;
+    }
   }
   .status-bar::before {
     border-bottom-right-radius: var(--radius-s);
