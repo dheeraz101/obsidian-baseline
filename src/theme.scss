@@ -18,20 +18,27 @@
 @use "editor/table.scss";
 @use "editor/bases.scss";
 
+@use "layouts/layout-styles.scss";
+@use "layouts/classic.scss";
+@use "layouts/cards.scss";
+@use "layouts/border.scss";
+@use "layouts/frame.scss";
+@use "layouts/cupertino.scss";
+@use "layouts/macos.scss";
+
 @use "features/alternative-checkboxes.scss";
 @use "features/block-width.scss";
 @use "features/callout-icon.scss";
 @use "features/compact-actions.scss";
 @use "features/image-zoom.scss";
 @use "features/stacked-nav.scss";
-@use "features/cards.scss";
+@use "features/dataview-cards.scss";
 @use "features/helpers-tables.scss";
 @use "features/image-filters.scss";
 @use "features/underline-headings.scss";
 @use "features/colorful-folders.scss";
 @use "features/colorful-frame.scss";
 @use "features/colorful-headings.scss";
-@use "features/layout-styles.scss";
 @use "features/focus-mode.scss";
 @use "features/hover-sidedock.scss";
 
@@ -46,7 +53,6 @@
 @use "color-schemes/frappe.scss";
 @use "color-schemes/gruvbox.scss";
 @use "color-schemes/latte.scss";
-@use "color-schemes/macos.scss";
 @use "color-schemes/macchiato.scss";
 @use "color-schemes/melange.scss";
 @use "color-schemes/minimal.scss";

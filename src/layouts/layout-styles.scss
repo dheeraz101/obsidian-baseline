@@ -1,0 +1,11 @@
+body:not(.layout-cards, .layout-border, .layout-frame) {
+  &.show-ribbon:not(.stacked-nav-off) .mod-sidedock.mod-left-split {
+    .mod-top-left-space .workspace-tab-header-container {
+      padding-left: 0;
+    }
+    .workspace-leaf-content > .node-insert-event,
+    .workspace-leaf-content > .view-content {
+      padding-left: 8px;
+    }
+  }
+}

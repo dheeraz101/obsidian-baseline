@@ -1,0 +1,111 @@
+body.layout-classic:not(.is-mobile),
+body.layout-minimal:not(.is-mobile) {
+  // Side panels
+  &:not(.stacked-nav-off) .mod-sidedock.mod-left-split {
+    .sidebar-toggle-button::after {
+      height: var(--tab-outline-width);
+      background-color: var(--tab-outline-color);
+      content: "";
+      position: absolute;
+      inset: auto -100vw -8px;
+    }
+    .mod-top-left-space {
+      .workspace-tab-header-container {
+        border-bottom: none;
+      }
+      .workspace-tab-header-container-inner {
+        overflow: visible;
+        position: relative;
+        padding-top: 8px;
+      }
+      .workspace-leaf-content > .nav-header,
+      .workspace-leaf-content > .view-content > div:not(.nav-buttons-container):not(.graph-controls) {
+        padding-top: 0;
+        padding-bottom: 8px;
+      }
+    }
+  }
+  .mod-sidedock {
+    & > .workspace-leaf-resize-handle {
+      border-color: var(--background-modifier-border);
+    }
+
+    .workspace-leaf-content > .nav-header,
+    .workspace-leaf-content > .view-content > div:not(.nav-buttons-container):not(.graph-controls) {
+      padding-top: 8px;
+      padding-bottom: 0;
+    }
+  }
+
+  // Editor panel
+  .mod-root {
+    background-color: var(--background-secondary);
+
+    .workspace-tabs .workspace-tab-container {
+      border-radius: 0;
+    }
+  }
+
+  // ----------------------------------------------------------------
+
+  // Ribbon fix
+  &.show-ribbon .workspace-ribbon.mod-left {
+    padding-top: calc(var(--header-height) + 8px);
+  }
+
+  // Tab outline fix
+  &:not(.colorful-frame):not(.theme-light.contrast-light-vivid) {
+    --tab-outline-width: var(--border-width);
+
+    .mod-root .workspace-tab-header-container-inner {
+      padding-top: 1px;
+      margin-bottom: -1px;
+    }
+  }
+
+  // ----------------------------------------------------------------
+
+  // Style Settings: Tabs fix
+  &.tabs-underline .mod-root .workspace-tab-header-container-inner {
+    --tab-outline-width: 0;
+  }
+  &.tabs-floating .mod-root .workspace-tab-header-container-inner {
+    padding-right: 1px;
+  }
+
+  // Style Settings: Status bar fix
+  &.status-bar-full {
+    --status-bar-border-width: 1px 0 0 0;
+  }
+}
+
+body.layout-minimal:not(.is-mobile) {
+  &.tabs-floating {
+    --tab-background-active: var(--background-modifier-hover);
+    --tab-outline-width: 0;
+
+    .mod-root {
+      --tab-outline-width: 0 !important;
+
+      .workspace-tab-header-container-inner {
+        padding-top: 0;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &.theme-light.contrast-light-vivid .mod-root .workspace-tab-header-container-inner {
+    padding-top: 1px;
+    margin-bottom: -1px;
+  }
+
+  .mod-sidedock .workspace-tabs:not(.mod-top) .workspace-tab-header-container {
+    border-bottom: none;
+  }
+
+  .mod-root,
+  .mod-sidedock.mod-right-split,
+  .mod-sidedock.mod-right-split .workspace-tabs .workspace-leaf {
+    background-color: var(--background-primary);
+  }
+}

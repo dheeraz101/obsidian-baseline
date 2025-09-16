@@ -1,0 +1,47 @@
+body.layout-cupertino:not(.is-mobile) {
+  &.theme-light .mod-root .workspace-tab-container {
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 24px 48px, rgba(0, 0, 0, 0.02) 0px 4px 16px;
+  }
+  &.theme-dark .mod-root .workspace-tab-container {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 24px 48px, rgba(0, 0, 0, 0.12) 0px 4px 16px;
+  }
+
+  .mod-root {
+    z-index: 1;
+
+    .workspace-tabs,
+    .workspace-tab-container {
+      overflow: visible;
+    }
+    .workspace-tab-container {
+      overflow: visible;
+      outline: var(--border-width) solid var(--background-modifier-border);
+    }
+    .workspace-leaf {
+      border-radius: var(--radius-s);
+    }
+  }
+
+  // ----------------------------------------------------------------
+
+  // Tab outline fix
+  &:not(.tabs-floating):not(.tabs-underline):not(.theme-light.contrast-light-vivid) .mod-root {
+    .workspace-tab-header-container-inner {
+      --tab-outline-width: var(--border-width);
+
+      padding-top: 1px;
+      margin-bottom: -1px;
+    }
+  }
+  // Status bar fix
+  &:not(.status-bar-full) .mod-root .workspace-tab-container {
+    margin-bottom: 8px;
+  }
+
+  // ----------------------------------------------------------------
+
+  // Style Settings: Tabs style fix
+  &.tabs-floating {
+    --tab-background-active: var(--background-modifier-hover);
+  }
+}

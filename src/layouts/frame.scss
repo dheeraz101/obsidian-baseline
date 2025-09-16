@@ -1,0 +1,117 @@
+body.layout-frame:not(.is-mobile) {
+  .workspace {
+    padding: 4px;
+    background-color: var(--background-secondary);
+  }
+  .workspace::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--background-secondary);
+  }
+  .workspace-ribbon,
+  .workspace-split {
+    margin: 4px;
+    height: unset;
+    background-color: var(--background-primary);
+    border-radius: var(--radius-s);
+    border: var(--border-width) solid var(--background-modifier-border);
+    overflow: hidden;
+  }
+  .workspace-tabs .workspace-leaf {
+    background-color: transparent;
+  }
+  .mod-root {
+    overflow: hidden;
+  }
+  .mod-root .workspace-tabs .workspace-tab-container {
+    border-radius: 0;
+  }
+
+  // ----------------------------------------------------------------
+
+  // Ribbon fix
+  &.show-ribbon.mod-macos {
+    .workspace-ribbon {
+      --ribbon-width: calc(var(--header-height) + 28px);
+    }
+    .workspace:not(.is-left-sidedock-open) .mod-root {
+      --frame-left-space: 0px;
+    }
+  }
+
+  // Obsidian frame fix
+  &.is-frameless:not(.is-hidden-frameless) {
+    .workspace {
+      padding-top: 0;
+    }
+    .workspace-ribbon,
+    .workspace-split {
+      margin-top: 0;
+    }
+  }
+
+  // Windows & Linux fix
+  &:not(.mod-macos).is-frameless.is-hidden-frameless .titlebar {
+    height: var(--header-height);
+    top: 8px;
+    right: 8px;
+
+    .titlebar-button-container.mod-right {
+      border-top-right-radius: var(--radius-s);
+      overflow: hidden;
+    }
+  }
+
+  // Tab outline fix
+  &:not(.tabs-floating, .tabs-underline, .theme-light.contrast-light-vivid, .colorful-frame) .mod-root {
+    --tab-outline-width: var(--border-width);
+
+    .workspace-tab-header-container-inner {
+      padding-top: 1px;
+      margin-bottom: -1px;
+    }
+  }
+
+  // Status bar
+  &:not(.status-bar-full, .status-bar-cupertino) .status-bar {
+    right: 8px;
+    bottom: 8px;
+  }
+
+  // ----------------------------------------------------------------
+
+  // Style Settings: Background contrast fix
+  &.theme-light.contrast-light-vivid {
+    .workspace-ribbon,
+    .workspace-split {
+      border-color: #424242;
+    }
+    .mod-root .workspace-tab-header-container::before {
+      background-color: var(--background-primary);
+    }
+  }
+
+  // Style Settings: Stacked nav off fix
+  &.show-ribbon.stacked-nav-off .mod-sidedock.mod-left-split .mod-top-left-space .workspace-tab-header-container {
+    padding-left: 0;
+  }
+
+  // Style Settings: Tabs fix
+  &.tabs-floating {
+    --tab-background-active: var(--background-modifier-hover);
+  }
+  &.tabs-underline .mod-root .workspace-tab-header-container {
+    border-bottom-width: var(--border-width);
+  }
+
+  // Style Settings: Status bar fix
+  &.status-bar-full .workspace {
+    padding-bottom: 0;
+
+    .workspace-ribbon,
+    .workspace-split {
+      margin-bottom: 0;
+    }
+  }
+}
