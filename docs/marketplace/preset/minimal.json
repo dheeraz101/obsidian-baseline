@@ -40,5 +40,6 @@
   "baseline-style@@tag-border-width": 1,
   "baseline-style@@tag-background@@dark": "#FFFFFF00",
   "baseline-style@@tag-background@@light": "#FFFFFF00",
-  "baseline-style@@checkbox-radius": "100px"
+  "baseline-style@@checkbox-radius": "100px",
+  "baseline-style@@header-height": "40px"
 }
