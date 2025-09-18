@@ -1,0 +1,65 @@
+body {
+  --input-height: 32px;
+
+  --radius-modifier: 1;
+  --input-radius: var(--radius-s);
+  --radius-s: calc(8px * var(--radius-modifier));
+  --radius-m: calc(12px * var(--radius-modifier));
+  --radius-l: calc(16px * var(--radius-modifier));
+  --radius-xl: calc(24px * var(--radius-modifier));
+  --checkbox-radius: 4px;
+
+  --background-modifier-form-field: var(--interactive-normal);
+
+  /* 0 when <1, 1 when >=1 */
+  --radius-modifier-check: clamp(0, (var(--radius-modifier) - 1) * 10000 + 1, 1);
+
+  --button-radius: calc((8px * var(--radius-modifier)) * (1 - var(--radius-modifier-check)) + 100vw * var(--radius-modifier-check));
+}
+
+body:not([class*="input-"]).is-mobile,
+body.input-baseline.is-mobile {
+  --interactive-normal: var(--background-primary);
+  --input-border-width: var(--divider-width);
+}
+
+body.theme-light {
+  --input-shadow: 0 0 0 var(--input-border-width) var(--background-modifier-border);
+  --input-shadow-hover: 0 0 0 var(--input-border-width) var(--background-modifier-border-hover);
+}
+body.theme-dark {
+  --input-shadow: 0 0 0 var(--input-border-width) var(--background-modifier-border-hover);
+  --input-shadow-hover: 0 0 0 var(--input-border-width) var(--background-modifier-border-hover);
+}
+
+// Button
+button,
+select,
+.dropdown {
+  transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
+}
+
+button:not(.clickable-icon, .ant-switch) {
+  padding: 16px;
+  display: inline-flex;
+}
+
+.clickable-icon {
+  padding: 8px;
+}
+
+// Toggle
+body:not(.accented-interface) .checkbox-container {
+  --interactive-accent: var(--color-green);
+}
+.checkbox-container {
+  box-shadow: none;
+}
+.checkbox-container:after {
+  box-shadow: none;
+}
+
+// Slider
+input[type="range"]::-webkit-slider-thumb {
+  box-shadow: none;
+}
