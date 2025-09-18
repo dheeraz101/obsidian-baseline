@@ -1292,13 +1292,6 @@ settings:
 		default: 50
 		format: rem
 	-
-		id: line-width-max
-		title: Maximum line width %
-		description: Number of characters per line
-		type: variable-number
-		default: 90
-		format: '%'
-	-
 		id: chart-width
 		title: Chart width
 		description: Default width for chart blocks
