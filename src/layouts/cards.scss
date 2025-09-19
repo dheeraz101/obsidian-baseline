@@ -10,11 +10,10 @@ body.layout-cards:not(.is-mobile) {
     }
     .workspace-tabs .workspace-tab-container {
       margin: 0 8px;
-      background-color: var(--background-primary);
       border-radius: var(--radius-l);
     }
     .workspace-tabs .workspace-leaf {
-      background-color: transparent;
+      background-color: var(--background-primary);
     }
     .workspace-leaf-content > .nav-header,
     .workspace-leaf-content > .view-content > div:not(.nav-buttons-container):not(.graph-controls) {

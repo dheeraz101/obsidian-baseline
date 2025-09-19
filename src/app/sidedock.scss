@@ -94,6 +94,10 @@ body:not(.is-mobile, .theme-light:is(.contrast-light-tonal, .contrast-light-whit
   border-color: transparent;
 }
 body:not(.is-mobile) .mod-sidedock {
+  .workspace-leaf {
+    background-color: var(--background-secondary);
+  }
+
   // Sidedock padding
   .workspace-leaf-content > .node-insert-event,
   .workspace-leaf-content > .view-content {
