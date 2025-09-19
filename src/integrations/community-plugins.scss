@@ -40,18 +40,27 @@ body.prompt-padded {
 }
 
 // Notebook Navigator https://github.com/johansan/notebook-navigator
+body {
+  --nn-theme-nav-header-bg: transparent;
+  --nn-theme-nav-bg: transparent;
+  --nn-theme-list-header-bg: transparent;
+  --nn-theme-list-bg: transparent;
+}
 body:not(.is-mobile) .view-content.notebook-navigator {
-  background-color: var(--background-secondary);
   padding: 0 !important;
-  .nn-list-pane {
-    margin-right: 8px;
-    border-radius: var(--radius-s);
-  }
-  .nn-nav-spacer {
-    height: 64px !important;
+  background-color: transparent;
+
+  .nn-split-container.nn-single-pane {
+    .nn-navigation-pane .nn-pane-header,
+    .nn-navigation-pane-scroller {
+      border-right: none;
+    }
   }
   .nn-virtual-container {
-    margin-bottom: 48px;
+    margin-bottom: 32px;
+  }
+  .nn-search-input {
+    height: 100% !important;
   }
 }
 
