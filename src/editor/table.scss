@@ -97,12 +97,6 @@
 
     &.table-view-table > tbody > tr:not(:only-child) > td {
       max-width: 20em;
-      text-wrap: nowrap;
-
-      &:hover {
-        text-wrap: wrap;
-        word-break: break-word;
-      }
     }
 
     &.dataview-error-box {
