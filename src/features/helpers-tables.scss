@@ -97,6 +97,9 @@
         display: inline-block;
         min-width: 10px;
       }
+      img {
+        max-width: calc(100% - 2.5em);
+      }
     }
   }
 }
